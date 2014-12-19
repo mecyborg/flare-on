@@ -1,0 +1,35 @@
+<div class="container">
+   
+    <div class="row">
+    
+<div class="col-md-3 col-md-offset-4">
+<h2>Create New Topic</h2>
+
+<%= form_for @alltopic do |f| %>
+  <% if @alltopic.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4>Please check for the errors and retry.</h4>
+      <ul>
+        <% for message in @alltopic.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <p>
+    <%= f.label "Topic Id" %><br />
+    <%= f.text_field :t_id, :class => "form-control" %>
+  </p>
+   <p>
+    <%= f.label "Topic Name" %><br />
+    <%= f.text_field :t_name, :class => "form-control" %>
+  </p>
+  <%= f.submit "Post", :class => "btn btn-success"%>
+
+<% end %>
+<br/>
+<%= link_to "Show All Topics", show_topics_path, :class => "btn btn-warning" %>
+
+</div>
+</div>
+</div>

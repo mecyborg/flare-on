@@ -1,0 +1,31 @@
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+  
+ <div class="panel panel-default">
+ <div class="panel-heading"><b>Registered Users</b></div>
+  <div class="panel-body">
+  <% allusers_show.find_each do |user|%>
+ <% if user %>
+           <p><img width="30px" height="30px" src="/assets/default.jpeg"> 
+           <%= user.first_name %> <%= user.last_name %> 
+           (<%= link_to user.profile_name, user_path(@user, :email => user.email) %>) 
+           </p></br>     
+                      
+            
+  <% end %>
+ <% end %>
+
+
+  </div>
+</div>
+</div>
+
+  
+
+</div>
+</div>
+

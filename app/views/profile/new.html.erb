@@ -1,0 +1,137 @@
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-12 col-md-offset--1">
+    <!--<div class="col-md-3">
+    <img src="/assets/default-.jpeg">
+    </div>--> 
+<div class="col-md-3">
+  <div class="panel panel-default">
+  
+  <div class="panel-body">
+    <div class="col-md-3 col-md-offset-1">
+    <img src="/assets/default.jpeg">
+    <div class="row">
+    <div class="col-md-3">
+    <p>
+    <div class="btn btn-success btn-xs">Follow</div>
+    </br>
+    <div class="btn btn-danger btn-xs">Message</div>
+    </p>
+    </div>
+    </div>
+  </div>
+</div>
+</div>	
+</div>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <% if current_user %>
+  <div class="panel-heading"><b><%= current_user.first_name %> <%= current_user.last_name %></b></div>
+  <div class="panel-body">
+    <% if current_user %>
+           <p> <%= current_user.bio %></p>      
+    <% end %>      
+    <% end %>
+  </div>
+</div>
+
+  <%= link_to "Post New Question", post_ques_path, :class => "btn btn-success" %>
+
+
+  
+</div>
+<div class="col-md-3">
+  <div class="panel panel-default">
+  <div class="panel-heading">Related</div>
+  <div class="panel-body">
+    <% if current_user %>
+           <p> Related Profiles</p>      
+    <% end %>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+  <div class="row">
+    <div class="col-md-12">
+    <div class="col-md-3">
+  <div class="panel panel-default">
+  
+  <div class="panel-body">
+    <% if current_user %>
+           <p> Profile name: <%= current_user.profile_name %></p>   
+           <p> First Name : <%= current_user.first_name %></p>
+           <p> Last Name : <%= current_user.last_name %></p>  
+           <p> Email : <%= current_user.email %></p>      
+
+    <% end %>
+  </div>
+</div>
+
+    </div>
+    <div class="col-md-6">
+<!--  <div class="panel panel-default">
+  <div class="panel-body">
+  <% ques_show.find_each do |question|%>
+ <% if question %>
+           <p>ID: <%=  question.id %> Category: <%= question.Category %> </p>      
+           <p><b><%= question.Ques %></b> </p>      
+           <p><div <% if question.Upvote %> 
+           class='btn btn-success btn-sm' 
+           <% else %>
+           class='btn btn-warning btn-sm' 
+           <% end %> >
+           Upvote
+           </div> 
+           <div <% if question.follow %> 
+           class='btn btn-success btn-sm' 
+           <% else %>
+           class='btn btn-warning btn-sm' 
+           <% end %> >
+           Follow
+           </div> 
+           </p>      
+           
+            
+  <% end %>
+  <% end %>
+
+  </div>
+</div>-->
+ <div class="panel panel-default">
+ <!--<div class="panel-heading"><b>Question Posted</b></div>-->
+  <div class="panel-body">
+  <% postques_show.find_each do |question|%>
+ <% if question %>
+           <p>ID: <%=  question.id %> Topic Id: <%= question.t_id %> </p>      
+           <p><b><%= question.ques_text%></b> </p>             
+            <p><div <% if question.upvote %> 
+           class='btn btn-success btn-sm' 
+           <% else %>
+           class='btn btn-warning btn-sm' 
+           <% end %> >
+           Upvote
+           </div> 
+           <div <% if question.follow %> 
+           class='btn btn-success btn-sm' 
+           <% else %>
+           class='btn btn-warning btn-sm' 
+           <% end %> >
+           Follow
+           </div> 
+           </p>      
+  <% end %>
+ <% end %>
+
+
+  </div>
+</div>
+
+  
+</div>
+  </div>
+</div>
+</div>

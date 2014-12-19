@@ -1,0 +1,31 @@
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+<%= link_to "Post New Question", post_quest_path, :class => "btn btn-success" %>
+  </br></br>
+  
+ <div class="panel panel-default">
+ <div class="panel-heading"><b>Question Posted</b></div>
+  <div class="panel-body">
+  <% postques_show.find_each do |question|%>
+ <% if question %>
+           <p>ID: <%=  question.id %> Topic Id: <%= question.t_id %> </p>      
+           <p><b><%= link_to question.ques_text, ques_path(@post_ques, :id => question.id) %>
+           </b></p>
+            
+  <% end %>
+ <% end %>
+
+
+  </div>
+</div>
+</div>
+
+  
+
+</div>
+</div>
+

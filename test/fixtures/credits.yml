@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  u_id: MyString
+  ans_id: MyString
+  u_value: 1
+  uid_from: MyString
+
+two:
+  u_id: MyString
+  ans_id: MyString
+  u_value: 1
+  uid_from: MyString

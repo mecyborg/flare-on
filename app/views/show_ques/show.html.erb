@@ -1,0 +1,114 @@
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-12 col-md-offset--1">
+    <!--<div class="col-md-3">
+    <img src="/assets/default-.jpeg">
+    </div>--> 
+<div class="col-md-3">
+  <div class="panel panel-default">
+  
+  <div class="panel-body">
+    <div class="col-md-3 col-md-offset-1">
+    
+    <div class="row">
+    <div class="col-md-3">
+    <% if anyques && current_user%>
+    </br>
+    <p>
+    <% if user_follow_ques == false %>
+    <%= link_to 'Follow', {:controller => "ques_follow", :action => "update_follow", 
+      :q_id => anyques.id, :email => current_user.email}, :method => "post", :class => "btn btn-warning btn-sm" %>
+    <%else %>
+     <div class= "btn btn-success btn-sm" ><b>Following</b></div> 
+    </p>
+
+    <%end %>
+    <%end %>
+    </div>
+    </div>
+  </div>
+</div>
+</div>	
+</div>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <% if anyques %>
+  <div class="panel-heading"><b>Question Id: <%= anyques.id %></b></div>
+  <div class="panel-body">
+    
+          <h2> <%= anyques.ques_text %> </h2> </br> 
+          <%if current_user %>    
+    <%= link_to 'Answer this Question', newans_path(:q_id => anyques.id, :email => current_user.email, :ques_text => anyques.ques_text,:t_id => anyques.t_id),:class => "btn btn-danger btn-sm" %>
+    
+    <%else %>
+    Login to answer !      
+    <% end %>
+    <%end %>
+  </div>
+</div>
+  
+</div>
+<div class="col-md-3">
+  <div class="panel panel-default">
+  <div class="panel-heading">Related</div>
+  <div class="panel-body">
+    <% if anyques %>
+           <p> Related Profiles</p>      
+    <% end %>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+  <div class="row">
+    <div class="col-md-12">
+    <div class="col-md-3">
+  <div class="panel panel-default">
+  
+  <div class="panel-body">
+    <% if anyques %>
+           <p> Question id: <%= anyques.id %></p>   
+           <p> Topic Id: <%= anyques.t_id %></p>     
+ <% end %>
+    
+  </div>
+</div>
+
+    </div>
+
+       <div class="col-md-6">
+ <div class="panel panel-default">
+ <div class="panel-heading">All Answers to this Question</div>
+  <div class="panel-body">
+<% allans_show.find_each do |user|%>
+ <% if user %>
+          <p><em>Answered By:</em> <b><%= user.user_id %></b></p>
+            <div class="well"><p><%= user.answer_content %></div>
+           </p>
+           <p>
+           <%if AnsUpvote.where(u_id: current_user.email, ans_id: user.id).exists? == false %>
+    <%= link_to 'Upvote', {:controller => "ans_upvotes", :action => "upvote_done", 
+      :ans_id => user.id, :email => current_user.email, :to_user => user.user_id}, :method => "post", :class => "btn btn-warning btn-sm" %>
+    <%else %>
+     <div class= "btn btn-success btn-sm" ><b>Upvoted | <%= AnsUpvote.where(ans_id: user.id).count%>
+     </b></div></p>
+               
+                      
+  <% end %>
+            
+  <% end %>
+
+ <% end %>
+
+
+  </div>
+</div>
+
+  
+</div>
+  </div>
+</div>
+</div>

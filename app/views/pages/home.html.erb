@@ -1,0 +1,37 @@
+<% provide(:jumbotron, '
+      <h1>Hello, world!</h1>
+      <p>According to Samosapedia, Jugaad means - A tribute to native genius, and lateral thinking. It means where there\'s a will, there\'s a way. In a sense, it means innovation the frugal way. But, as a paradigm we have forgotten something that was integrated in our DNA, we have lost the essence of jugaad, the essence of innovation in terms of how we do business.
+		</br></br>
+      This is "the" CEO of Ideabata.
+      Thanks for visiting this page.
+      </p>
+      <p><a class="btn btn-primary btn-lg" role="button">mecyborg</a></p>
+  '.html_safe)%>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Shantanu Singh </h3>
+        <p>Chief Timepass Officer</p>
+        <p><a class="btn btn-primary" role="button">View Details</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3>Kushal Shah </h3>
+        <p>Junior Intern</p>
+        <p><a class="btn btn-primary" role="button">View Details</a></p>
+     </div>
+      <div class="col-md-4">
+        
+        <p>
+  <% if current_user %>
+    Logged in as <%= current_user.first_name %>.
+    <%= link_to "Log out", log_out_path, :class => "btn btn-success" %>
+  <% else %>
+    <%= link_to "Sign up", sign_up_path, :class => "btn btn-success" %> or
+    <%= link_to "log in", log_in_path, :class => "btn btn-success" %>
+  <% end %>
+</p>
+        
+      </div>
+    </div>

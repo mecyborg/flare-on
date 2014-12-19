@@ -1,0 +1,95 @@
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-12 col-md-offset--1">
+    <!--<div class="col-md-3">
+    <img src="/assets/default-.jpeg">
+    </div>--> 
+<div class="col-md-3">
+  <div class="panel panel-default">
+  
+  <div class="panel-body">
+    <div class="col-md-3 col-md-offset-1">
+    <img src="/assets/default.jpeg">
+    <div class="row">
+    <div class="col-md-3">
+    <% if current_user %>
+    </br>
+    <p>
+    OK
+    </p>
+
+    
+    <%end %>
+    </div>
+    </div>
+  </div>
+</div>
+</div>	
+</div>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <% if current_user && credits_show %>
+  <div class="panel-heading"><b><%= current_user.first_name%>'s Credits</b></div>
+  <div class="panel-body">
+        
+  <h1><b>Credits:</b> <%= credits_show %></h1>
+  <%= link_to 'Get Rewards',credits_path, :class => "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
+  
+</div>
+<div class="col-md-3">
+  <div class="panel panel-default">
+  <div class="panel-heading">Related</div>
+  <div class="panel-body">
+    <% if current_user %>
+           <p> Related Profiles</p>      
+    <% end %>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+  <div class="row">
+    <div class="col-md-12">
+    <div class="col-md-3">
+  <div class="panel panel-default">
+  
+  <div class="panel-body">
+    
+    
+  </div>
+</div>
+
+    </div>
+       <div class="col-md-6">
+ <div class="panel panel-default">
+ <div class="panel-heading">Credits Breakdown</div>
+
+  <div class="panel-body">
+  <p>Each user gets <b>50</b> <em>Bonus Credits</em> on joining ideabata.</p>
+  <h4><b>Upvotes By:</b></h4>
+
+  <!--<h5><b>Total Answer Upvotes</b> = some_value</br></br>
+      <b>Total 'First Answer' Credits</b> = another_value
+  </h5>-->
+  <% credits_info.find_each do |user|%>
+ <% if user %>
+          <p><b><%= user.uid_from%></b> ON answer <em><%= user.ans_id%></em> ( +<%= user.u_value %> )</p>
+            
+           <p>
+ <% end %>
+ <% end %>
+
+  </div>
+</div>
+
+  
+</div>
+  </div>
+</div>
+</div>

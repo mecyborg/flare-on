@@ -1,0 +1,32 @@
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+<%= link_to "Add New Topic", add_topic_path, :class => "btn btn-success" %>
+</br></br>
+
+  
+ <div class="panel panel-default">
+ <div class="panel-heading"><b>All Topics</b></div>
+  <div class="panel-body">
+  <% alltopics_show.find_each do |user|%>
+ <% if user %>
+           <p><%= user.t_id %> - 
+           <%= link_to user.t_name, topic_path(@alltopics, :t_id => user.t_id) %>
+           </p></br>     
+                      
+            
+  <% end %>
+ <% end %>
+
+
+  </div>
+</div>
+</div>
+
+  
+
+</div>
+</div>
+

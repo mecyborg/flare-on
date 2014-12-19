@@ -1,0 +1,34 @@
+<div class="container">
+   
+    <div class="row">
+    
+<div class="col-md-3 col-md-offset-4">
+<h2>Post New Question</h2>
+
+<%= form_for @postquest do |f| %>
+  <% if @postquest.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4>Please check for the errors and retry.</h4>
+      <ul>
+        <% for message in @postquest.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <p>
+    <%= f.label :ques_text %><br />
+    <%= f.text_field :ques_text, :class => "form-control" %>
+  </p>
+   <p>
+    <%= f.label "Topic Id" %><br />
+    <%= f.text_field :t_id, :class => "form-control" %>
+  </p>
+  <%= f.submit "Post", :class => "btn btn-success"%>
+
+<% end %>
+<br/>
+<%= link_to "Show Questions", show_quest_path, :class => "btn btn-warning" %>
+</div>
+</div>
+</div>
