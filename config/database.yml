@@ -49,7 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: login_production
-  username: login
+  database: dep_production
+  username: dep
   adapter: postgresql
   password: <%= ENV['LOGIN_DATABASE_PASSWORD'] %>
