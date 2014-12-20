@@ -64,8 +64,10 @@ class ApplicationController < ActionController::Base
     end
 
     def allans_show
-    @allans_show ||= Answer.where(question_id: params[:id]) #if session[:user_id]
+    @allans_show ||= Answer.where(question_id: params[:id]).where.not(id: "1") #if session[:user_id]
     end
+
+    #remove not when heroku problem is fixed
    
     def credits_show
     @credits_show ||= Credit.where(u_id: current_user[:email]).sum(:u_value)  

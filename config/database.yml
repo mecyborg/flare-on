@@ -19,7 +19,7 @@ default: &default
 
 development:
   <<: *default
-  database: login_development
+  database: dep_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -49,7 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: dep_production
-  username: dep
+  database: login_production
+  username: login
   adapter: postgresql
   password: <%= ENV['LOGIN_DATABASE_PASSWORD'] %>
