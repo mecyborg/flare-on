@@ -86,21 +86,17 @@
  <div class="panel-heading">All Answers to this Question</div>
   <div class="panel-body">
   <%if current_user%>
-<% allans_show.find_each do |user|%>
- <% if user %>
-          <p><em>Answered By:</em> <b><%= user.user_id %></b></p>
-            <div class="well"><p><%= user.answer_content %></div>
+<% allans_show.find_each do |ans|%>
+ <% if ans %>
+          <p><em>Answered By:</em> <b><%= ans.user_id %></b></p>
+            <div class="well"><p><%= ans.answer_content %></div>
            </p>
            <p>
-           <%if AnsUpvote.where(u_id: current_user.email, ans_id: user.id).exists? == false %>
-    <%= link_to 'Upvote', {:controller => "ans_upvotes", :action => "upvote_done", 
-      :ans_id => user.id, :email => current_user.email, :to_user => user.user_id}, :method => "post", :class => "btn btn-warning btn-sm" %>
-    <%else %>
-     <div class= "btn btn-success btn-sm" ><b>Upvoted | <%= AnsUpvote.where(ans_id: user.id).count%>
+           
      </b></div></p>
                
                       
-  <% end %>
+ 
             
   <% end %>
 
