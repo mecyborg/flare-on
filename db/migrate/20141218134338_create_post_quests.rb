@@ -4,7 +4,7 @@ class CreatePostQuests < ActiveRecord::Migration
 
     	t.string :ques_text
 
-    t.string :ques_text
+   # t.string :ques_text
 
       t.string :t_id
       t.string :first

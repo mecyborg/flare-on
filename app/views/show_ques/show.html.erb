@@ -45,6 +45,8 @@
     <%else %>
     Login to answer !      
     <% end %>
+    <%else%>
+    SOME ERROR ! We are working on it. No need to panic !
     <%end %>
   </div>
 </div>
@@ -83,6 +85,7 @@
  <div class="panel panel-default">
  <div class="panel-heading">All Answers to this Question</div>
   <div class="panel-body">
+  <%if current_user%>
 <% allans_show.find_each do |user|%>
  <% if user %>
           <p><em>Answered By:</em> <b><%= user.user_id %></b></p>
@@ -102,13 +105,13 @@
   <% end %>
 
  <% end %>
-
+ <% end %>
 
   </div>
 </div>
 
   
 </div>
-  </div>
+</div>
 </div>
 </div>

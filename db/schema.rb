@@ -64,13 +64,20 @@ ActiveRecord::Schema.define(version: 20141219122659) do
   end
 
   create_table "post_quests", force: true do |t|
+    t.string   "ques_text"
+    t.string   "t_id"
+    t.string   "first"
+    t.string   "upvote"
+    t.string   "follow"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ques_text"
-    t.integer  "t_id"
-    t.string   "first",      default: "NO"
-    t.boolean  "upvote",     default: false
-    t.boolean  "follow",     default: false
+  end
+
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ques", force: true do |t|
@@ -89,16 +96,16 @@ ActiveRecord::Schema.define(version: 20141219122659) do
     t.datetime "updated_at"
   end
 
-  create_table "topic_follows", force: true do |t|
-    t.integer  "t_id"
-    t.string   "email"
+  create_table "question_follows", force: true do |t|
+    t.string   "question_id"
+    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "topics", force: true do |t|
-    t.string   "topic_id"
-    t.string   "topic_name"
+  create_table "topic_follows", force: true do |t|
+    t.integer  "t_id"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
