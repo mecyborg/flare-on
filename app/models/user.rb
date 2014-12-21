@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   before_save :encrypt_password
   before_save :create_unique_profile_id
+  #before_save :add_credits
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -11,6 +12,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_presence_of :first_name
   validates_presence_of :last_name
+  validates_presence_of :profile_name
+
   
   def self.authenticate(email, password)
     user = find_by_email(email)
@@ -25,7 +28,8 @@ class User < ActiveRecord::Base
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-    end
+    
+      end
   end
 end
 
