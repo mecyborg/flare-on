@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         # @add_credit.u_value = "50"
     if @user.save
       # @add_credit.save
-      redirect_to root_url, :notice => "Signed up!"
+      redirect_to log_in_path, :flash => { :success => "Signed Up Successfully. You can login now !" }
     else
       render "new"
     end

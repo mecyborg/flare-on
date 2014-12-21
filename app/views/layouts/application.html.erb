@@ -20,6 +20,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
   <![endif]-->
+  
   <a href="#Top"></a>
 </head>
 <body>
@@ -59,6 +60,18 @@
       </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
   </div><!-- /.navbar -->
+
+<div class="container">
+<div class="col-md-4 col-md-offset-4">
+      <% flash.each do |key, value| %>
+        <% #if key == "NULL" %>
+        <% #key = 'danger' %>
+        <% #end%>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+    </div>
+
 
   <% if current_page?(root_path) %>
     <% if content_for?(:jumbotron) %>

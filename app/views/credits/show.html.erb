@@ -36,6 +36,9 @@
         
   <h1><b>Credits:</b> <%= credits_show+50 %></h1>
   <%= link_to 'Get Rewards',credits_path, :class => "btn btn-success" %>
+    <%else %>
+    <% #flash.now[:notice] = 'Successfully checked in' %>
+    <% login_redirect %>
     <% end %>
   </div>
 </div>
@@ -77,6 +80,7 @@
   <!--<h5><b>Total Answer Upvotes</b> = some_value</br></br>
       <b>Total 'First Answer' Credits</b> = another_value
   </h5>-->
+  <% if current_user && credits_show %>
   <% credits_info.find_each do |user|%>
  <% if user %>
           <p><b><%= user.uid_from%></b> ON answer <em><%= user.ans_id%></em> ( +<%= user.u_value %> )</p>
@@ -84,6 +88,8 @@
            <p>
  <% end %>
  <% end %>
+ <% end %>
+
 
   </div>
 </div>

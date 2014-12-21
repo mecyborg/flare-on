@@ -7,7 +7,8 @@ class PostQuestsController < ApplicationController
   def create
     @postquest = PostQuest.new(postquest_params)
     if @postquest.save
-      render "show", :notice => "Question Added!"
+      redirect_to show_quest_path, :flash => { :success => "Question Posted !" }
+    
     #	render'index'
     else
       render "new"

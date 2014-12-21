@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   helper_method :postques_show
   helper_method :anyans
   helper_method :credits_info
-
+  helper_method :login_redirect
 
 
 
@@ -76,6 +76,12 @@ class ApplicationController < ActionController::Base
     def credits_info
     @credits_info ||= Credit.where(u_id: current_user[:email]).where.not(uid_from: "new_user_bonus")
     end
+
+    def login_redirect
+        #flash[:notice] = 'Successfully checked in'
+       redirect_to log_in_path, :flash => { :danger => "Please Login" }
+    end
+
 
 
     # def user_follow_ques

@@ -11,7 +11,9 @@ class AnswersController < ApplicationController
     # @newans.user_id = params[:email]
     # @newans.answer_content = :answer_content
     if @newans.save
-      redirect_to show_quest_path
+      #redirect_to show_quest_path
+      redirect_to show_quest_path, :flash => { :success => "Answer Posted !" }
+
     else
       redirect_to show_quest_path
     end 
