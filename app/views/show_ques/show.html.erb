@@ -93,7 +93,7 @@
            </p>
            <p>
   <%#if AnsUpvote.exists?%>
-    <%if AnsUpvote.where(u_id: current_user.email, ans_id: ans.id.to_i).exists? == false %>
+    <%if AnsUpvote.where(u_id: current_user.email, ans_id: ans.id).exists? == false %>
     
 
     <%= link_to 'Upvote', {:controller => "ans_upvotes", :action => "upvote_done", 

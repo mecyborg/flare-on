@@ -14,3 +14,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+#Ignore database files
+/config/secrets.yml
+/config/database.yml
+
+
+
+
+
