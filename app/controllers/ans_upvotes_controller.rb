@@ -14,7 +14,7 @@ class AnsUpvotesController < ApplicationController
        @add_credit =  Credit.new
         @add_credit.u_id = params[:email]
         @add_credit.ans_id = params[:ans_id]
-        @add_credit.uid_from = params[:to_user]
+        @add_credit.uid_from = params[:from_user]
         @add_credit.u_value = "10"
 
      if @ans_upvote.save
