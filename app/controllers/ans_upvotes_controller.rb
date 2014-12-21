@@ -9,7 +9,7 @@ class AnsUpvotesController < ApplicationController
   def upvote_done
   	@ans_upvote = AnsUpvote.new
   	@ans_upvote.ans_id = params[:ans_id]
-    @ans_upvote.u_id = params[:email]
+    @ans_upvote.u_id = params[:from_user]
       
        @add_credit =  Credit.new
         @add_credit.u_id = params[:email]
