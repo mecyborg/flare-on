@@ -92,10 +92,10 @@
             <div class="well"><p><%= ans.answer_content %></div>
            </p>
            <p>
-  <%#if AnsUpvote.exists? == false%>
+  <%if AnsUpvote.exists?%>
     <%if AnsUpvote.where(u_id: current_user.email, ans_id: ans.id).exists? == false %>
     
-    
+
     <%= link_to 'Upvote', {:controller => "ans_upvotes", :action => "upvote_done", 
       :ans_id => ans.id, :email => current_user.email, :to_user => ans.user_id}, :method => "post", :class => "btn btn-warning btn-sm" %>
     <%else %>
@@ -105,7 +105,7 @@
      </b></div></p>
  <%end%>
             
-  <% #end %>
+  <% end %>
 
  <% end %>
  <% end %>
