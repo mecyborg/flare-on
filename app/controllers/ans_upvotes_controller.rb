@@ -1,4 +1,6 @@
 class AnsUpvotesController < ApplicationController
+
+  
   def new
     @ans_upvote = AnsUpvote.new
     

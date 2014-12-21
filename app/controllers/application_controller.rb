@@ -16,10 +16,7 @@ class ApplicationController < ActionController::Base
   helper_method :anyans
   helper_method :credits_info
   helper_method :login_redirect
-
-
-
-
+  helper_method :followed_ques
 
 
   
@@ -82,6 +79,9 @@ class ApplicationController < ActionController::Base
        redirect_to log_in_path, :flash => { :danger => "Please Login" }
     end
 
+    def followed_ques
+    @followed_ques ||= QuesFollow.where(email: current_user.email)
+    end
 
 
     # def user_follow_ques
