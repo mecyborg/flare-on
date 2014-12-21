@@ -100,7 +100,7 @@
       :ans_id => ans.id, :email => current_user.email, :to_user => ans.user_id}, :method => "post", :class => "btn btn-warning btn-sm" %>
     <%else %>
 
-     <div class= "btn btn-success btn-sm" ><b>Upvoted | <%= AnsUpvote.where(ans_id: ans.id).count%>
+     <div class= "btn btn-success btn-sm" ><b>Upvoted
      
      </b></div></p>
  <%end%>
