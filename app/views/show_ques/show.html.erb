@@ -40,7 +40,7 @@
     
           <h2> <%= anyques.ques_text %> </h2> </br> 
           <%if current_user %>    
-    <%= link_to 'Answer this Question', newans_path(:q_id => anyques.id, :email => current_user.email, :ques_text => anyques.ques_text,:t_id => anyques.t_id),:class => "btn btn-danger btn-sm" %>
+    <%= link_to 'Answer this Question', newans_path(:q_id => anyques.id, :email => current_user.email, :ques_text => anyques.ques_text,:t_id => anyques.t_id), :method => "post" ,:class => "btn btn-danger btn-sm" %>
     
     <%else %>
     Login to answer !      
@@ -54,10 +54,17 @@
 </div>
 <div class="col-md-3">
   <div class="panel panel-default">
-  <div class="panel-heading">Related</div>
+  <div class="panel-heading">Latest Questions</div>
   <div class="panel-body">
-    <% if anyques %>
-           <p> Related Profiles</p>      
+    <% if anyques && current_user%>
+           <p> <% postques_show_sidebar.each do |question|%>
+ <% if question %>
+                 
+           <p><b><%= link_to question.ques_text, ques_path(@post_quest, :id => question.id) %>
+           </b></p>
+            
+  <% end %>
+ <% end %></p>      
     <% end %>
   </div>
 </div>
@@ -93,14 +100,18 @@
            </p>
            <p>
   <%#if AnsUpvote.exists?%>
+  <% upvote_count = AnsUpvote.where(ans_id: ans.id).count %>
     <%if AnsUpvote.where(u_id: current_user.email, ans_id: ans.id).exists? == false %>
-    
-
-    <%= link_to 'Upvote', {:controller => "ans_upvotes", :action => "upvote_done", 
+   <% if upvote_count == 0 %>
+   <%= link_to  "Be the first one to Upvote", {:controller => "ans_upvotes", :action => "upvote_done", 
+      :ans_id => ans.id, :from_user => current_user.email, :email => ans.user_id}, :method => "post", :class => "btn btn-warning btn-sm" %>   
+   <%else %>
+    <%= link_to  "Upvote | #{upvote_count}", {:controller => "ans_upvotes", :action => "upvote_done", 
       :ans_id => ans.id, :from_user => current_user.email, :email => ans.user_id}, :method => "post", :class => "btn btn-warning btn-sm" %>
+      <% end %>
     <%else %>
 
-     <div class= "btn btn-success btn-sm" ><b>Upvoted| <%= AnsUpvote.where(ans_id: ans.id).count%>
+     <div class= "btn btn-success btn-sm" ><b>Upvoted | <%= upvote_count %>
      
      </b></div></p>
  <%#end%>

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_filter :require_login
   def new
   end
   
@@ -17,4 +18,6 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to log_in_url,  :flash => { :success => "Logged out ! Take Care Now. Bye bye then.." }
   end
+
+  
 end

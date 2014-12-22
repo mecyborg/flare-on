@@ -12,7 +12,7 @@
  <% if user %>
            <p><img width="30px" height="30px" src="/assets/default.jpeg"> 
            <%= user.first_name %> <%= user.last_name %> 
-           (<%= link_to user.profile_name, user_path(@user, :email => user.email) %>) 
+           (<%= link_to user.profile_name, any_user_profile_path(@user, :email => user.email) %>) 
            </p></br>     
                       
             

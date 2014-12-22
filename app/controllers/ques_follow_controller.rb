@@ -5,6 +5,7 @@ def new
   end
 
   def update_follow
+    
   	@ques_follows = QuesFollow.new
   	@ques_follows.q_id = params[:q_id]
     @ques_follows.email = params[:email]
@@ -12,6 +13,7 @@ def new
   		redirect_to :back
   	else
   		redirect_to show_ques_path
-  	end 
+  	end
+    #end 
   end
 end

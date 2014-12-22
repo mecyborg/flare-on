@@ -1,0 +1,58 @@
+<div class="container">    
+    
+<div class="col-md-10 col-md-offset-1">
+<div class="row">
+<h2>Edit your Profile</h2>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4>Please check for the errors and retry.</h4>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-md-4">
+   <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, :class => "form-control" %>
+  </p>
+   <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, :class => "form-control" %>
+  </p>
+  <p>
+    <%= f.label "Username" %><br />
+    <%= f.text_field :profile_name, :class => "form-control" %>
+  </p>
+
+  </div>
+  <div class="col-md-5 col-md-offset-1">
+  <p>
+    <%= f.label "Email (Cannot be changed)" %><br />
+    <%= f.text_field :email, :readonly => true, :class => "form-control" %>
+  </p>
+  
+  <p>
+    <%= f.label "Password" %><br />
+    <%= f.password_field :password,:placeholder => "Leave blank in case of no change", :class => "form-control" %>
+  </p>
+  <p>
+    <%= f.label "Password Confirmation " %><br />
+    <%= f.password_field :password_confirmation,:placeholder => "Leave blank in case of no change", :class => "form-control" %>
+  </p>
+
+  <%= f.submit "Update", :class => "btn btn-success"%>
+  </div>
+
+<% end %>
+</div>
+<div class="row">
+ </br></br><p><b>NOTE:</b> Leave Password fields <em>blank</em> if you don't want to change your password.</p>
+  </div>
+</div>
+
+</div>

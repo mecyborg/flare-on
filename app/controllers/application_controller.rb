@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
   helper_method :current_user
   helper_method :ques_show
   helper_method :allusers_show
@@ -17,16 +18,28 @@ class ApplicationController < ActionController::Base
   helper_method :credits_info
   helper_method :login_redirect
   helper_method :followed_ques
+  helper_method :postques_show_sidebar
 
-
+protect_from_forgery with: :null_session 
   
+
+
+before_filter :require_login,  only: [:edit, :update] 
+
+
   private
   
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue ActiveRecord::RecordNotFound
   end
 
+   def require_login
+    unless current_user
+      redirect_to log_in_path, :flash => { :danger => "Please Login or Sign Up First." }
+    end
+  end
 	
     def ques_show
     @ques_show ||= Ques.all #if session[:user_id]
@@ -44,7 +57,11 @@ class ApplicationController < ActionController::Base
       @postques_show ||= PostQuest.all  
     end  
 
-  	def alltopics_show
+  	def postques_show_sidebar
+      @postques_show_sidebar ||= PostQuest.last(2)  
+    end 
+
+    def alltopics_show
     @alltopics_show ||= Alltopic.all #if session[:user_id]
   	end
 

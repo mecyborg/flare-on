@@ -35,22 +35,30 @@ Bootstrap::Application.routes.draw do
   
 
   get "profile" => "profile#new", :as => "profile"
+  #get "edit_profile" => "users#edit", :as => "edit_profile"
+
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
   get "post_quest" => "post_quests#new", :as => "post_quest"
   get "show_quest" => "post_quests#show", :as => "show_quest"
   get "allusers" => "profile#allusers", :as => "allusers"
-  get "user" => "profile#userprofile", :as => "user"
+  #get "user" => "profile#userprofile", :as => "user"
   get "add_topic" => "alltopics#new", :as => "add_topic"
   get "show_topics" => "alltopics#show", :as => "show_topics"
   get "topic" => "alltopics#topic", :as => "topic"
   get "ques" => "show_ques#show", :as => "ques"
   get "newans" => "answers#new", :as => "newans"
   get "credits" => "credits#show", :as => "credits"
+  get "any_user_profile" => "profile#userprofile", :as => "any_user_profile"
+
 
   resources :post_ques
   resources :post_quests
+  #resources :profile
+  
+
+
 
 
   resources :show_ques
