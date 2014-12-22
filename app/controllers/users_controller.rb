@@ -10,8 +10,10 @@ class UsersController < ApplicationController
   #skip_before_filter :require_login
   def correct_user        #to ensure current user does the edit (url manilpulation)
       @user = User.find(params[:id])
-      redirect_to(profile_url) unless @user == current_user
+    rescue ActiveRecord::RecordNotFound
       
+      redirect_to(profile_url) unless @user == current_user
+
     end
 
   def new

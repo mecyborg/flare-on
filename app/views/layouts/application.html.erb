@@ -77,8 +77,20 @@
   <% if current_page?(root_path) %>
     <% if content_for?(:jumbotron) %>
       <div class="jumbotron">
+
         <div class="container">
+
           <%= yield :jumbotron %>
+          </br>
+          <div class="row text-center">
+          <% if current_user %>
+    Logged in as <%= current_user.first_name %>.
+    <%= link_to "Log out", log_out_path, :class => "btn btn-success" %>
+  <% else %>
+    <%= link_to "Sign up", sign_up_path, :class => "btn btn-success" %> or
+    <%= link_to "log in", log_in_path, :class => "btn btn-success" %>
+  <% end %>
+  </div>
         </div>
       </div>
     <% end %>
