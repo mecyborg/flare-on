@@ -121,6 +121,7 @@
   <footer>
     <hr>
      <div class="pull-right">
+      <% if current_user %>
     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" onClick ="$('#whatsnew').modal()">
   What's New
 </button>
@@ -137,9 +138,9 @@
       <div class="modal-body">
        <div class="panel panel-default">
   <div class="panel-body">
-  <% if current_user %>
+ 
         <%= render file: "./layouts/whatsnew.html.erb" %>
-        <%end%>
+        
         </div>
         </div>
       </div>
@@ -149,7 +150,7 @@
     </div>
   </div>
 </div>
-
+<%end%>
         <%= link_to '<span class="glyphicon-class glyphicon glyphicon-chevron-up"></span> Back to top'.html_safe, '#Top' %>
       </div>
       <p>
