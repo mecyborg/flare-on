@@ -49,7 +49,9 @@ test:
 #
 production:
   <<: *default
-  database: login_production
-  username: login
-  adapter: postgresql
-  password: <%= ENV['LOGIN_DATABASE_PASSWORD'] %>
+  database: dep_development
+  adapter: mysql2
+  username: root
+  password: toor
+  host: localhost
+  
