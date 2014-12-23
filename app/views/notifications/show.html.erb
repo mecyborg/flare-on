@@ -1,0 +1,31 @@
+<br/>
+<div class="container">
+
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+ 
+ <div class="panel panel-default">
+ <div class="panel-heading"><b>Your Notifictions</b></div>
+  <div class="panel-body">
+   <% if allnoti_show.count == 0%>
+<h4><b>No</b> notifications for you. Feeling lonely ? Come on. Do something.</h4>
+  <% end %>
+  <% allnoti_show.find_each do |user|%>
+ <% if user %>
+           <p><b><%= user.user_from %></b> <em>upvoted</em> your answer
+           <%= user.ans_id %>. (<%= time_ago_in_words(user.created_at) %> ago)     
+           </p>      
+
+  <% end %>
+ <% end %>
+
+
+  </div>
+</div>
+</div>
+
+  
+
+</div>
+</div>
+

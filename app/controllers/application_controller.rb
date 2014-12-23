@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   helper_method :login_redirect
   helper_method :followed_ques
   helper_method :postques_show_sidebar
+  helper_method :allnoti_show
+  
 
 protect_from_forgery with: :null_session 
   
@@ -78,7 +80,7 @@ before_filter :require_login,  only: [:edit, :update]
     end
 
     def allans_show
-    @allans_show ||= Answer.where(question_id: params[:id]).where.not(id: "1") #if session[:user_id]
+    @allans_show ||= Answer.where(question_id: params[:id]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
     end
 
     #remove 'not' when heroku problem is fixed
@@ -88,7 +90,7 @@ before_filter :require_login,  only: [:edit, :update]
     end
 
     def credits_info
-    @credits_info ||= Credit.where(u_id: current_user[:email]).where.not(uid_from: "new_user_bonus")
+    @credits_info ||= Credit.where(u_id: current_user[:email]).order('notifications.created_at ASC').reverse_order.where.not(uid_from: "new_user_bonus")
     end
 
     def login_redirect
@@ -113,5 +115,8 @@ before_filter :require_login,  only: [:edit, :update]
     @ans_upvote_count ||= AnsUpvote.find_by(id: params[:id]).count
     end
 
+    def allnoti_show
+    @allnoti_show ||= Notification.where(user_to: current_user.email).order('notifications.created_at ASC').reverse_order #if session[:user_id]
+  end
 
 end

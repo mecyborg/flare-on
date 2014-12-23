@@ -20,9 +20,17 @@ class AnsUpvotesController < ApplicationController
         @add_credit.uid_from = params[:from_user]
         @add_credit.u_value = "10"
 
+        @add_noti =  Notification.new
+        @add_noti.user_to = params[:email]
+        @add_noti.user_from = params[:from_user]
+        @add_noti.noti_type = "upvote"
+        @add_noti.ans_id = params[:ans_id]
+        #@add_noti.u_value = "10"
+
      if @ans_upvote.save
       
       @add_credit.save
+      @add_noti.save
       
   		redirect_to :back
     

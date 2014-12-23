@@ -1,5 +1,9 @@
 Bootstrap::Application.routes.draw do
 
+  get 'notifications/new'
+
+  get 'notifications/show'
+
   get 'topic_follows/edit'
 
  # get 'alltopics/new'
@@ -48,7 +52,7 @@ Bootstrap::Application.routes.draw do
   get "show_topics" => "alltopics#show", :as => "show_topics"
   get "topic" => "alltopics#topic", :as => "topic"
   get "ques" => "show_ques#show", :as => "ques"
-  get "newans" => "answers#new", :as => "newans"
+  post "newans" => "answers#new", :as => "newans"
   get "credits" => "credits#show", :as => "credits"
   get "any_user_profile" => "profile#userprofile", :as => "any_user_profile"
 
@@ -56,7 +60,7 @@ Bootstrap::Application.routes.draw do
   resources :post_ques
   resources :post_quests
   #resources :profile
-  
+  resources :notifications
 
 
 

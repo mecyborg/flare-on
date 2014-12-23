@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   #attr_accessible :email, :password, :password_confirmation
-  
+  #has_many :notifications
   attr_accessor :password
   before_save :encrypt_password
   before_save :create_unique_profile_id

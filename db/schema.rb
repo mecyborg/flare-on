@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219122659) do
+ActiveRecord::Schema.define(version: 20141223124642) do
 
   create_table "alltopics", force: true do |t|
     t.integer  "t_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20141219122659) do
 
   create_table "ans_upvotes", force: true do |t|
     t.string   "u_id"
-    t.string   "ans_id"
+    t.integer  "ans_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 20141219122659) do
   create_table "file_uploads", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.string   "user_to"
+    t.string   "user_from"
+    t.string   "noti_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ans_id"
   end
 
   create_table "post_attachments", force: true do |t|

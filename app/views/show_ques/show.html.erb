@@ -39,7 +39,9 @@
   <div class="panel-body">
     
           <h2> <%= anyques.ques_text %> </h2> </br> 
-          <%if current_user %>    
+          <%if current_user %> 
+        
+ 
     <%= link_to 'Answer this Question', newans_path(:q_id => anyques.id, :email => current_user.email, :ques_text => anyques.ques_text,:t_id => anyques.t_id), :method => "post" ,:class => "btn btn-danger btn-sm" %>
     
     <%else %>
@@ -50,7 +52,7 @@
     <%end %>
   </div>
 </div>
-  
+    
 </div>
 <div class="col-md-3">
   <div class="panel panel-default">
@@ -95,7 +97,7 @@
   <%if current_user%>
 <% allans_show.find_each do |ans|%>
  <% if ans %>
-          <p><em>Answered By:</em> <b><%= ans.user_id %></b></p>
+          <p><em>Answered By:</em> <b><%= ans.user_id %></b> (<%= time_ago_in_words(ans.created_at) %> ago)</p>
             <div class="well"><p><%= ans.answer_content %></div>
            </p>
            <p>
@@ -111,7 +113,7 @@
       <% end %>
     <%else %>
 
-     <div class= "btn btn-success btn-sm" ><b>Upvoted | <%= upvote_count %>
+     <div class= "btn btn-success btn-sm" ><b>Upvoted <span class="badge"><%= upvote_count %></span>
      
      </b></div></p>
  <%#end%>
