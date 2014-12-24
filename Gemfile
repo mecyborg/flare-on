@@ -8,7 +8,9 @@ group :production do
 end
 
 
-  gem 'thin'		#thin web server
+ # gem 'thin'		#thin web server
+ 		
+gem 'unicorn'		#unicorn web server
 
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
