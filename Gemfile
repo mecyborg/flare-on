@@ -2,15 +2,18 @@ source 'https://rubygems.org'
 
 group :development, :test do
   gem 'mysql2'
+	gem 'thin'		#thin web server
+
 end
 group :production do
   gem 'pg'
+gem 'unicorn'		#unicorn web server
+  
 end
 
 
- # gem 'thin'		#thin web server
+#gem 'thin'		#thin web server
  		
-gem 'unicorn'		#unicorn web server
 
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
