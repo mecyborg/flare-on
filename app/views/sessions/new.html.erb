@@ -1,22 +1,28 @@
+<% provide(:title, "Login") %>
+
 <div class="container">
     <!-- Example row of columns -->
     <div class="row">
 <div class="col-md-3 col-md-offset-4">
-<h1>Log in</h1>
+<h1>Login</h1>
 
 <%= form_tag sessions_path do %>
 
   <p>
     <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email], :class => "form-control" %>
+    <%= text_field_tag :email, params[:email],:placeholder => "Your Email", :class => "form-control" %>
   </p>
   <p>
     <%= label_tag :password %><br />
-    <%= password_field_tag :password, params[:password],:class => "form-control" %>
+    <%= password_field_tag :password, params[:password],:placeholder => "Your Password",:class => "form-control" %>
   </p>
 
   <%= submit_tag "Log in", :class => "btn btn-success" %>
 <% end %>
+</br>
+New to ideabata ? <%= link_to 'Sign up now !',sign_up_path %>
 </div>
+  
+
 </div>
 </div>

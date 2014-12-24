@@ -1,4 +1,9 @@
-<div class="container">    
+
+<% provide(:title, "Edit Profile") %>
+
+<div class="container"> 
+
+<% correct_url %>
     
 <div class="col-md-10 col-md-offset-1">
 <div class="row">
@@ -16,6 +21,8 @@
     </div>
   <% end %>
   <div class="col-md-4">
+     
+  
    <p>
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, :class => "form-control" %>
@@ -35,15 +42,15 @@
     <%= f.label "Email (Cannot be changed)" %><br />
     <%= f.text_field :email, :readonly => true, :class => "form-control" %>
   </p>
-  
+  <p>
+    <%= f.label "Bio" %><br />
+    <%= f.text_field :bio, :placeholder => "Like food lover, traveller, reader etc.", :class => "form-control" %>
+  </p>
   <p>
     <%= f.label "Password" %><br />
     <%= f.password_field :password,:placeholder => "Leave blank in case of no change", :class => "form-control" %>
   </p>
-  <p>
-    <%= f.label "Password Confirmation " %><br />
-    <%= f.password_field :password_confirmation,:placeholder => "Leave blank in case of no change", :class => "form-control" %>
-  </p>
+ 
 
   <%= f.submit "Update", :class => "btn btn-success"%>
   </div>
@@ -51,7 +58,7 @@
 <% end %>
 </div>
 <div class="row">
- </br></br><p><b>NOTE:</b> Leave Password fields <em>blank</em> if you don't want to change your password.</p>
+ </br></br><p><b>NOTE:</b> Leave Password field <em>blank</em> if you don't want to change your password.</p>
   </div>
 </div>
 

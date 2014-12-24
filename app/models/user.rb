@@ -6,13 +6,16 @@ class User < ActiveRecord::Base
   before_save :create_unique_profile_id
   #before_save :add_credits
   
-  validates_confirmation_of :password
+  
+ # validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :email
-  validates_uniqueness_of :email
-  validates_presence_of :first_name
-  validates_presence_of :last_name
   validates_presence_of :profile_name
+  validates_uniqueness_of :email
+  validates_uniqueness_of :profile_name
+
+  #validates_presence_of :first_name
+  #validates_presence_of :last_name
 
   
   def self.authenticate(email, password)
@@ -40,3 +43,5 @@ def create_unique_profile_id
       self.profile_id=SecureRandom.base64(8)
     end while self.class.exists?(:profile_id =>profile_id)
   end
+
+  

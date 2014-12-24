@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # before_action :logged_in_user, only: [:edit, :update]
     before_action :correct_user,   only: [:edit, :update]  
+    helper_method :correct_url
   # def logged_in_user
   #     unless logged_in?
   #       flash[:danger] = "Please log in."
@@ -8,12 +9,19 @@ class UsersController < ApplicationController
   #     end
   #   end
   #skip_before_filter :require_login
+  def correct_url
+      redirect_to(profile_url) unless @user == current_user 
+  end
+
   def correct_user        #to ensure current user does the edit (url manilpulation)
       @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      
       redirect_to(profile_url) unless @user == current_user
+    
+    end
 
+    def index
+      redirect_to sign_up_path
     end
 
   def new
@@ -32,7 +40,8 @@ class UsersController < ApplicationController
       # @add_credit.save
       redirect_to log_in_path, :flash => { :success => "Signed Up Successfully. You can login now !" }
     else
-      render "new"
+
+      render "users/new"
     end
   end
 
@@ -45,7 +54,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-            flash[:success] = "Profile updated"
+            flash[:success] = "Profile updated! Feeling Refreshed already."
       #:flash => { :success => "Profile Updated! Feeling Refreshed already." }
       render "edit"
     else
@@ -56,7 +65,7 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:first_name,:last_name,:email, :password, :profile_name)
+    params.require(:user).permit(:first_name,:last_name,:email, :password, :profile_name,:bio)
   end
   # def new_credits_params
   #   params.require(:credit).permit(:u_id => :email,:ans_id => "new_user_bonus",:uid_from => "new_user_bonus", :u_value => "50")

@@ -15,7 +15,7 @@ module ApplicationHelper
   def site_url
     if Rails.env.production?
       # Place your production URL in the quotes below
-      "http://http://www.example.com/"
+      "https://salty-scrubland-4489.herokuapp.com/"
     else
       # Our dev & test URL
       "http://localhost:3000"
@@ -43,7 +43,7 @@ module ApplicationHelper
     if page_title.empty?
       site_name
     else
-      "#{page_title} | #{site_name}"
+      "#{page_title} - #{site_name}"
     end
   end
 

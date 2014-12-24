@@ -1,5 +1,9 @@
 Bootstrap::Application.routes.draw do
 
+  get 'myactivity/new'
+
+  get 'myactivity/show'
+
   get 'notifications/new'
 
   get 'notifications/show'
@@ -55,15 +59,17 @@ Bootstrap::Application.routes.draw do
   post "newans" => "answers#new", :as => "newans"
   get "credits" => "credits#show", :as => "credits"
   get "any_user_profile" => "profile#userprofile", :as => "any_user_profile"
+  get "myactivity" => "myactivity#show", :as => "myactivity"
+
 
 
   resources :post_ques
   resources :post_quests
   #resources :profile
   resources :notifications
+  resources :myactivity
 
-
-
+  #resources :user
 
   resources :show_ques
   resources :answers

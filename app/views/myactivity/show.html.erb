@@ -1,0 +1,53 @@
+
+<% provide(:title, "My activity") %>
+  
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+  
+ <div class="panel panel-default">
+ <div class="panel-heading"><b>My Answers</b></div>
+  <div class="panel-body">
+   <% if answered.count == 0%>
+<h4>You haven't answered any questions yet. World needs answer.</h4>
+  <% end %>
+  <% answered.find_each do |myanswers|%>
+ <% if myanswers %>
+           <p> You answered <mark><b><%= truncate(myanswers.answer_content, :length => 30)%></b></mark> on question <%= myanswers.question_id %>. (<%= time_ago_in_words(myanswers.created_at) %> ago)  </p>  
+                      
+            
+  <% end %>
+ <% end %>
+
+
+  </div>
+</div>
+
+ <div class="panel panel-default">
+ <div class="panel-heading"><b>My Upvotes</b></div>
+  <div class="panel-body">
+   <% if myupvotes.count == 0%>
+<h4>You haven't upvoted any answer yet. Don't you like to appreciate people.</h4>
+  <% end %>
+  <% myupvotes.find_each do |myupvote|%>
+ <% if myupvote %>
+           <p> You upvoted <b><%= myupvote.u_id %></b> 's answer <%= myupvote.ans_id %>.  (<%= time_ago_in_words(myupvote.created_at) %> ago) </p>   
+          
+                      
+            
+  <% end %>
+ <% end %>
+
+
+  </div>
+</div>
+</div>
+
+  
+
+</div>
+</div>
+

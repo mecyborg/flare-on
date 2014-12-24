@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
   helper_method :followed_ques
   helper_method :postques_show_sidebar
   helper_method :allnoti_show
+  #helper_method :online?
+
   
 
 protect_from_forgery with: :null_session 
@@ -27,6 +29,8 @@ protect_from_forgery with: :null_session
 
 
 before_filter :require_login,  only: [:edit, :update] 
+
+#after_filter :user_activity       #who is online
 
 
   private
@@ -36,6 +40,13 @@ before_filter :require_login,  only: [:edit, :update]
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue ActiveRecord::RecordNotFound
   end
+
+  # def user_activity
+  # current_user.try :touch
+  # end
+
+  #scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
+    
 
    def require_login
     unless current_user
