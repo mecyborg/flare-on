@@ -60,7 +60,7 @@
               <li> <%= link_to "Logout", log_out_path %></li>
               <% else %>
              <li class="<%= 'active' if current_page?(sign_up_path) %>"><%= link_to "Sign up", sign_up_path %> </li>
-              <li class="<%= 'active' if current_page?(log_in_path) %>"><%= link_to "log in", log_in_path %></li>
+              <li class="<%= 'active' if current_page?(log_in_path) %>"><%= link_to "Log in", log_in_path %></li>
               <% end %>
         </ul>
       </div><!-- /.nav-collapse -->
