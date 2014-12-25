@@ -12,7 +12,9 @@
   <div class="panel-body">
   <% allusers_show.find_each do |user|%>
  <% if user %>
-           <p><img width="30px" height="30px" src="/assets/default.jpeg"> 
+               
+           <p> <%= image_tag user.avatar.url(:thumb)%>
+
            <%= user.first_name %> <%= user.last_name %> 
            (<%= link_to user.profile_name, any_user_profile_path(@user, :email => user.email) %>)
            

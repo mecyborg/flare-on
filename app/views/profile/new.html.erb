@@ -12,13 +12,10 @@
   <div class="panel panel-default">
   
   <div class="panel-body">
-    <div class="col-md-3 col-md-offset-1">
-    <img src="/assets/default.jpeg">
-    <div class="row">
-    <div class="col-md-3">
-    </div>
-    </div>
-  </div>
+  
+
+  <%= image_tag current_user.avatar.url(:medium), :class => "img-responsive center-block" %>
+ 
 </div>
 </div>	
 </div>
@@ -35,7 +32,7 @@
 </div>
 
   <%= link_to "Post New Question", post_quest_path, :class => "btn btn-success" %>
-
+</br>
 
   
 </div>

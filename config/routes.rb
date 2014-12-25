@@ -60,6 +60,7 @@ Bootstrap::Application.routes.draw do
   get "credits" => "credits#show", :as => "credits"
   get "any_user_profile" => "profile#userprofile", :as => "any_user_profile"
   get "myactivity" => "myactivity#show", :as => "myactivity"
+  get 'users/:id/delete_avatar', to: 'users#delete_avatar', as: 'delete_avatar'
 
 
 
@@ -70,7 +71,7 @@ Bootstrap::Application.routes.draw do
   resources :myactivity
 
   #resources :user
-
+  resources :avatars
   resources :show_ques
   resources :answers
   #resources :answer

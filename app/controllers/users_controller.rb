@@ -2,13 +2,8 @@ class UsersController < ApplicationController
   # before_action :logged_in_user, only: [:edit, :update]
     before_action :correct_user,   only: [:edit, :update]  
     helper_method :correct_url
-  # def logged_in_user
-  #     unless logged_in?
-  #       flash[:danger] = "Please log in."
-  #       redirect_to log_in_path
-  #     end
-  #   end
-  #skip_before_filter :require_login
+ 
+ 
   def correct_url
       redirect_to(profile_url) unless @user == current_user 
   end
@@ -63,9 +58,16 @@ class UsersController < ApplicationController
 
   end
 
+  def delete_avatar
+    #tempuser = current_user.user
+    @user = User.find(params[:id])
+    @user.avatar = nil
+    @user.save
+    redirect_to edit_user_path, flash: { success: 'Your Avatar has been removed.' }
+  end
 
   def user_params
-    params.require(:user).permit(:first_name,:last_name,:email, :password, :profile_name,:bio)
+    params.require(:user).permit(:first_name,:last_name,:email, :password, :profile_name,:bio,:avatar)
   end
   # def new_credits_params
   #   params.require(:credit).permit(:u_id => :email,:ans_id => "new_user_bonus",:uid_from => "new_user_bonus", :u_value => "50")

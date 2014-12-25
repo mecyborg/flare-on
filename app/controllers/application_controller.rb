@@ -16,10 +16,12 @@ class ApplicationController < ActionController::Base
   helper_method :postques_show
   helper_method :anyans
   helper_method :credits_info
-  helper_method :login_redirect
+ # helper_method :login_redirect
   helper_method :followed_ques
   helper_method :postques_show_sidebar
   helper_method :allnoti_show
+  helper_method :require_login
+
   #helper_method :online?
 
   
@@ -104,10 +106,10 @@ before_filter :require_login,  only: [:edit, :update]
     @credits_info ||= Credit.where(u_id: current_user[:email]).order('notifications.created_at ASC').reverse_order.where.not(uid_from: "new_user_bonus")
     end
 
-    def login_redirect
-        #flash[:notice] = 'Successfully checked in'
-       redirect_to log_in_path, :flash => { :danger => "Please Login" }
-    end
+    # def login_redirect
+    #     #flash[:notice] = 'Successfully checked in'
+    #    redirect_to log_in_path, :flash => { :danger => "Please Login" }
+    # end
 
     def followed_ques
     @followed_ques ||= QuesFollow.where(email: current_user.email)

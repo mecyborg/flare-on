@@ -29,14 +29,14 @@
 <div class="col-md-6">
   <div class="panel panel-default">
   <% if current_user && credits_show %>
-  <div class="panel-heading"><b><%= current_user.first_name%>'s Credits</b></div>
+  <div class="panel-heading"><b>My Credits</b></div>
   <div class="panel-body">
         
   <h1><b>Credits:</b> <%= credits_show+50 %></h1>
-  <%= link_to 'Get Rewards',credits_path, :class => "btn btn-success" %>
+  <%= link_to 'Rewards coming soon','#', :class => "btn btn-success" %>
     <%else %>
-    <% #flash.now[:notice] = 'Successfully checked in' %>
-    <% login_redirect %>
+    <% require_login %>
+    
     <% end %>
   </div>
 </div>
@@ -57,17 +57,8 @@
 </div>
   <div class="row">
     <div class="col-md-12">
-    <div class="col-md-3">
-  <div class="panel panel-default">
-  
-  <div class="panel-body">
     
-    
-  </div>
-</div>
-
-    </div>
-       <div class="col-md-6">
+       <div class="col-md-6 col-md-offset-3">
  <div class="panel panel-default">
  <div class="panel-heading">Credits Breakdown</div>
 

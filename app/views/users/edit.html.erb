@@ -35,7 +35,15 @@
     <%= f.label "Username" %><br />
     <%= f.text_field :profile_name, :class => "form-control" %>
   </p>
+  <p>
+    <%= f.label "Avatar" %><br />
 
+    <%= f.file_field :avatar %>
+    <br />
+    <% if @user.persisted? %>
+    <%= link_to 'Remove Avatar', delete_avatar_path %>
+  <% end %>
+  </p>
   </div>
   <div class="col-md-5 col-md-offset-1">
   <p>

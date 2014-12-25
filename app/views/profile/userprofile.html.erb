@@ -13,29 +13,23 @@
   <div class="panel panel-default">
   
   <div class="panel-body">
-    <div class="col-md-3 col-md-offset-1">
-    <img src="/assets/default.jpeg">
-    <div class="row">
-    <div class="col-md-3">
-    <!--<p>
-    <div class="btn btn-success btn-xs">Follow</div>
-    </br>
-    <div class="btn btn-danger btn-xs">Message</div>
-    </p>-->
-    </div>
-    </div>
-  </div>
+  <% if userprofile %>
+  
+
+  <%= image_tag userprofile.avatar.url(:medium), :class => "img-responsive center-block" %>
+    <% end %>      
+  
 </div>
-</div>	
+</div>  
 </div>
 <div class="col-md-6">
   <div class="panel panel-default">
   <% if userprofile %>
   <div class="panel-heading"><b><%= userprofile.first_name %> <%= userprofile.last_name %></b></div>
   <div class="panel-body">
-    <% if userprofile %>
+    
            <p> <%= userprofile.bio %></p>      
-    <% end %>      
+        
     <% end %>
   </div>
 </div>

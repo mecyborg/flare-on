@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       redirect_to edit_user_path(current_user), :flash => { :success => "Logged in ! Mark your name first." }
 
       else
-      redirect_to profile_path(current_user), :flash => { :success => "Logged in ! Welcome aboard, mate." }
+      redirect_to profile_path, :flash => { :success => "Logged in ! Welcome aboard, mate." }
       end
     else
       flash.now[:alert] = 'Oops ! Invalid email or password.'
