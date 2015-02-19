@@ -14,7 +14,8 @@
 *= require_tree .
 *= require bootstrap.min
  */
- body { padding-top: 70px; }
+ body { padding-top: 70px;}
+ 
  @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../assets/glyphicons-halflings-regular.eot');
