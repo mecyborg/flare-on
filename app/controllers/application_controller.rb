@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_follow
   helper_method :anyques
   helper_method :user_follow_ques
-  helper_method :allans_show
+ # helper_method :allans_show
   helper_method :credits_show
   helper_method :postques_show
   helper_method :anyans
@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
   helper_method :postques_show_sidebar
   helper_method :allnoti_show
   helper_method :require_login
-
+  helper_method :is_admin?
+  helper_method :redirect_admin
   #helper_method :online?
 
   
@@ -38,10 +39,24 @@ before_filter :require_login,  only: [:edit, :update]
   private
   
 
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    rescue ActiveRecord::RecordNotFound
+    #rescue ActiveRecord::RecordNotFound
   end
+
+    # def admin_user?
+    # @admin_user ||= User.where(email: current_user[:email])
+    
+    # # if @admin_user == true
+    # #   #render "index"
+    # #   @admin_user_true == true
+    # # else
+    # #   #render
+    # #   @admin_user_true == false
+    # # end
+    # end
+
 
   # def user_activity
   # current_user.try :touch
@@ -56,45 +71,41 @@ before_filter :require_login,  only: [:edit, :update]
     end
   end
 	
-    def ques_show
-    @ques_show ||= Ques.all #if session[:user_id]
-  	end
+   #  def ques_show
+   #  @ques_show ||= Ques.all #if session[:user_id]
+  	# end
 
-  	def userprofile
-    @userprofile ||= User.find_by(email: params[:email])
-  	end
+  	# def userprofile
+   #  @userprofile ||= User.find_by(email: params[:email])
+  	# end
 
-  	def allusers_show
-    @allusers_show ||= User.all #if session[:user_id]
-  	end
+  	# def allusers_show
+   #  @allusers_show ||= User.all #if session[:user_id]
+  	# end
 
-    def postques_show
-      @postques_show ||= PostQuest.all  
-    end  
+    # def postques_show
+    #   @postques_show ||= PostQuest.all  
+    # end  
 
   	def postques_show_sidebar
       @postques_show_sidebar ||= PostQuest.last(2)  
     end 
 
-    def alltopics_show
-    @alltopics_show ||= Alltopic.all #if session[:user_id]
-  	end
+   #  def alltopics_show
+   #  @alltopics_show ||= Alltopic.all #if session[:user_id]
+  	# end
 
-    def anytopic
-    @anytopic ||= Alltopic.find_by(t_id: params[:t_id])
-    end
+   
 
-    def anyques
-    @anyques ||= PostQuest.find_by(id: params[:id])
-    end
+    # def anyques
+    # @anyques ||= PostQuest.find_by(id: params[:id])
+    # end
 
     def user_follow_ques
       @user_follow_ques ||= QuesFollow.exists?(q_id: params[:id])
     end
 
-    def allans_show
-    @allans_show ||= Answer.where(question_id: params[:id]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
-    end
+    
 
     #remove 'not' when heroku problem is fixed
    
@@ -105,7 +116,6 @@ before_filter :require_login,  only: [:edit, :update]
     def credits_info
     @credits_info ||= Credit.where(u_id: current_user[:email]).order('notifications.created_at ASC').reverse_order.where.not(uid_from: "new_user_bonus")
     end
-
     # def login_redirect
     #     #flash[:notice] = 'Successfully checked in'
     #    redirect_to log_in_path, :flash => { :danger => "Please Login" }
@@ -132,4 +142,15 @@ before_filter :require_login,  only: [:edit, :update]
     @allnoti_show ||= Notification.where(user_to: current_user.email).order('notifications.created_at ASC').reverse_order #if session[:user_id]
   end
 
+  def is_admin?
+  if current_user.admin_role?
+    return true
+  else
+    return false
+  end
+  end
+
+  def redirect_admin
+    redirect_to myprofile_path, :flash => { :danger => "It's hell there! Stay Away." }
+  end
 end

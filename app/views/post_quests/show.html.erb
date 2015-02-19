@@ -1,33 +1,92 @@
-<% provide(:title, "All Questions") %>
-
+<% if anyques %>
+<% provide(:title, "#{anyques.ques_text}") %>
+<% end %>
 <br/>
 <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-
-<%= link_to "Post New Question", post_quest_path, :class => "btn btn-success" %>
-  </br></br>
-  
- <div class="panel panel-default">
- <div class="panel-heading"><b>Question Posted</b></div>
-  <div class="panel-body">
-  <% postques_show.find_each do |question|%>
- <% if question %>
-           <p>ID: <%=  question.id %> Topic Id: <%= question.t_id %> </p>      
-           <p><b><%= link_to question.ques_text, ques_path(@post_quest, :id => question.id) %>
-           </b></p>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-2">
+        <div class="panel panel-default">
+          <div class="panel-body">  
             
-  <% end %>
- <% end %>
-
-
+              
+                <% if anyques && current_user%>
+                </br>
+                <p>
+                <% if user_follow_ques == false %>
+                <%= link_to 'Follow', new_ques_follow_path(:id => anyques.id), :class => "btn btn-warning btn-sm" %>
+                <%else %>
+                 <div class= "btn btn-success btn-sm" ><b>Following</b></div> 
+                </p>
+                <%end %>
+                <%end %> 
+              
+                  
+       
+      </div>
+    </div>
+  </div>  
+  
+<div class="col-md-7">
+  <div class="panel panel-default">
+    <% if anyques %>
+    <div class="panel-heading"><b>Question Id: <%= anyques.id %></b></div>
+      <div class="panel-body">
+    
+          <h2> <%= anyques.ques_text %> </h2> </br> 
+          <%if current_user %> 
+        
+          <%= render partial: "/answers/new" %>
+          <%else %>
+          Login to answer !      
+          <% end %>
+          <%else%>
+          SOME ERROR ! We are working on it. No need to panic !
+          <%end %>
+      </div>
   </div>
 </div>
-</div>
 
-  
+<div class="col-md-3">
+    <div class="panel panel-default">
+    <div class="panel-heading">Latest Questions</div>
+    <div class="panel-body">
+        <% if anyques && current_user%>
+                 <p> <% postques_show_sidebar.each do |question|%>
+          <% if question %>
+                       
+                 <p><b><%= link_to question.ques_text, question %>
+                 </b></p>
+                  
+        <% end %>
+       <% end %></p>      
+          <% end %>
+    </div>
+  </div>
+
+</div>
+          </div>
+          </div>
+
+
+
+
+    <div class="row">
+ 
+   <div class="col-md-7 col-md-offset-2">
+  <div class="panel panel-default">
+  <div class="panel-heading">All Answers to this Question</div>
+  <div class="panel-body">
+    <% if allans_show.count == 0%>
+  <h4>There are no answers right now. Care to add !</h4>
+
+    <%else%>
+      <%= render partial: "answers/show"%>
+      <%end%>
+    </div>  
+    </div>
+    <%= link_to "Show All", answer_path(@anyques)%>
+  </div>
 
 </div>
 </div>
-

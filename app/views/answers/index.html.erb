@@ -1,0 +1,17 @@
+<div class="row">
+ 
+   <div class="col-md-7 col-md-offset-2">
+  <div class="panel panel-default">
+  <div class="panel-heading">All Answers to this Question</div>
+  <div class="panel-body">
+    <% if allans_show.count == 0%>
+  <h4>There are no answers right now. Care to add !</h4>
+
+    <%else%>
+      <%= render partial: "answers/show"%>
+      <%end%>
+    </div>  
+    </div>
+  </div>
+
+</div>

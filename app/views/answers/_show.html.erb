@@ -1,0 +1,31 @@
+<% allans_show.find_each do |ans|%>
+ 
+ <% if ans %>
+
+
+          <p><em>Answered By:</em> <b><%= ans.user_id %></b> (<%= time_ago_in_words(ans.created_at) %> ago)</p>
+           <p> <div class="well"><p><%= ans.answer_content %></div>
+           </p><%#= link_to "Edit Answer", edit_answer_path(@anyans) %>
+           <p>
+       
+  <%#if AnsUpvote.exists?%>
+
+  <% upvote_count = AnsUpvote.where(ans_id: ans.id).count %>
+    <%if AnsUpvote.where(u_id: current_user.email, ans_id: ans.id).exists? == false && (ans.user_id == current_user.email) == false %>
+
+   <% if upvote_count == 0 %>
+   <%= link_to  "Be the first one to Upvote", new_answer_ans_upvote_path(ans), :class => "btn btn-warning btn-sm" %>   
+   <%else %>
+    <%= link_to  "Upvote | #{upvote_count}", new_answer_ans_upvote_path(ans), :class => "btn btn-warning btn-sm" %>
+      <% end %>
+    <%else %>
+
+     <div class= "btn btn-success btn-sm" ><b>Upvoted <span class="badge"><%= upvote_count %></span></b></div></p>
+       
+  <% end %>
+
+   
+ <% end %>
+
+ <% end %>
+    

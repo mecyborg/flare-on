@@ -11,10 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141225133934) do
+ActiveRecord::Schema.define(version: 20150207220059) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "alltopics", force: true do |t|
-    t.integer  "t_id"
     t.string   "t_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,31 +37,19 @@ ActiveRecord::Schema.define(version: 20141225133934) do
   end
 
   create_table "answers", force: true do |t|
-    t.string   "question_id"
+    t.integer  "question_id"
     t.string   "user_id"
     t.string   "answer_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "avatars", force: true do |t|
+  create_table "authorizations", force: true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo"
-    t.string   "email"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-  end
-
-  create_table "cards", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
   end
 
   create_table "credits", force: true do |t|
@@ -72,6 +62,11 @@ ActiveRecord::Schema.define(version: 20141225133934) do
   end
 
   create_table "file_uploads", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "links", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -148,12 +143,29 @@ ActiveRecord::Schema.define(version: 20141225133934) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "profile_name"
-    t.string   "profile_id",          null: false
+    t.string   "profile_id",                          null: false
     t.string   "bio"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "admin_role",          default: false
+    t.string   "name"
   end
+
+  create_table "votes", force: true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
 end

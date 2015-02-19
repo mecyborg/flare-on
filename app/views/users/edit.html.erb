@@ -44,11 +44,12 @@
     <%= link_to 'Remove Avatar', delete_avatar_path %>
   <% end %>
   </p>
+  
   </div>
   <div class="col-md-5 col-md-offset-1">
   <p>
     <%= f.label "Email (Cannot be changed)" %><br />
-    <%= f.text_field :email, :readonly => true, :class => "form-control" %>
+    <%= f.text_field :email, :readonly => true, :class => "form-control", "data-toggle"=>"tooltip", :title=>"You cannot change your email" %>
   </p>
   <p>
     <%= f.label "Bio" %><br />
@@ -58,9 +59,12 @@
     <%= f.label "Password" %><br />
     <%= f.password_field :password,:placeholder => "Leave blank in case of no change", :class => "form-control" %>
   </p>
- 
-
+  <p>
+</p>
+ <p>
   <%= f.submit "Update", :class => "btn btn-success"%>
+</p>
+
   </div>
 
 <% end %>

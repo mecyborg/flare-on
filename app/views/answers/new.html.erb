@@ -9,14 +9,14 @@
   <% if current_user %>
   </br>
   
-  <% ques_text = params[:ques_text]
-  t_id = params[:t_id]%>
+  <% ques_text = @anyques.ques_text
+  t_id = @anyques.t_id %>
 
   <div class="panel panel-default">
-  <div class="panel-heading"><b><%= ques_text %></b> (Topic id: <%= t_id %>)</div>
+  <div class="panel-heading"><b><%= ques_text %></b> (Topic: <%= t_id %>)</div>
   <div class="panel-body">
   
-  <%= form_for @newans do |f| %>
+  <%= form_for [@anyques, @newans] do |f| %>
   <% if @newans.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <h4>Please check for the errors and retry.</h4>
@@ -28,8 +28,8 @@
     </div>
   <% end %>
    <p>
-   <%= f.hidden_field :question_id, :value => params[:q_id]%>
-   <%= f.hidden_field :user_id, :value => current_user.email%>
+   <%#= f.hidden_field :question_id, :value => params[:q_id]%>
+   <%#= f.hidden_field :user_id, :value => current_user.email%>
     <%= f.label "Your Answer" %><br />
     <%= f.text_area :answer_content, :cols => 10, :rows => 8, :class => "form-control" %>
   </p>

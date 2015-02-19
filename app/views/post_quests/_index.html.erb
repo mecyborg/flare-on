@@ -1,0 +1,26 @@
+ <table class="table table-hover">
+  <tr>
+
+    <td><h4>TID</h4></td>
+    <td><h4>Question</h4></td>
+    <td><h4>Answers</h4></td>
+    
+  </tr>
+  <% @post_quests.each do |ques| %>
+  
+ <% if ques %>
+
+  <tr>
+
+    <td><%= ques.t_id %></td>
+    <td><%= link_to ques.ques_text, ques %></td>
+    <td><%upvote_count = Answer.where(question_id: ques.id).count%>
+    <%= upvote_count %></td>
+
+    
+  </tr>
+
+
+  <% end %>
+ <% end %>
+</table>

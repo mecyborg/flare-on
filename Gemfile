@@ -1,19 +1,21 @@
 source 'https://rubygems.org'
 
-group :development, :test do
-  gem 'mysql2'
+# group :development, :test do
+  gem 'pg'
 #	gem 'thin'		#thin web server
 
-end
-group :production do
-  gem 'pg'
+# end
+# group :production do
+#   gem 'pg'
 
-end
-
-
+# end
+# gem 'protected_attributes'
+gem 'will_paginate',           '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
+gem 'faker'
 #gem 'thin'		#thin web server
 gem 'unicorn'		#unicorn web server
- 		
+gem 'omniauth-facebook' 		
 gem 'unicorn-rails'
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

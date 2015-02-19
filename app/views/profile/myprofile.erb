@@ -1,0 +1,90 @@
+<% provide(:title, "My Profile") %>
+
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-12 col-md-offset--1">
+    <!--<div class="col-md-3">
+    <img src="/assets/default-.jpeg">
+    </div>--> 
+<div class="col-md-3">
+  <div class="panel panel-default">
+  
+  <div class="panel-body">
+  <%if current_user%>
+
+  <%= image_tag current_user.avatar.url(:medium), :class => "img-responsive center-block" %>
+<%end%>
+</div>
+</div>	
+</div>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <% if current_user %>
+  <div class="panel-heading"><b><%= current_user.first_name %> <%= current_user.last_name %></b></div>
+  <div class="panel-body">
+    <% if current_user %>
+           <p> <%= current_user.bio %></p>      
+    <% end %>      
+    <% end %>
+  </div>
+</div>
+
+  <%= link_to "Post New Question", new_post_quest_path, :class => "btn btn-success" %>
+</br>
+
+  
+</div>
+<div class="col-md-3">
+  <div class="panel panel-default">
+  <div class="panel-heading">Related</div>
+  <div class="panel-body">
+    <% if current_user %>
+           <p> Related Profiles</p>      
+    <% end %>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+  <div class="row">
+    <div class="col-md-12">
+    <div class="col-md-3">
+  <div class="panel panel-default">
+  
+  <div class="panel-body">
+    <% if current_user %>
+           <p> Profile name: <%= current_user.profile_name %></p>   
+           <p> First Name : <%= current_user.first_name %></p>
+           <p> Last Name : <%= current_user.last_name %></p>  
+           <p> Email : <%= current_user.email %></p>      
+           
+    <% end %>
+  </div>
+</div>
+
+    </div>
+  <!--  <div class="col-md-6">
+
+ <div class="panel panel-default">
+ <div class="panel-heading"><b>Question Posted</b></div>
+  <div class="panel-body">
+  <% #postques_show.find_each do |question|%>
+ <% #if question %>
+           <p>ID: <%#= question.id %> Topic Id: <%#= question.t_id %> </p>      
+           <p><b><%#= question.ques_text%></b> </p>             
+           
+  <% #end %>
+ <% #end %>
+-->
+
+  </div>
+</div>
+
+  
+</div>
+  </div>
+</div>
+</div>

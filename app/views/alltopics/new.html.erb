@@ -1,3 +1,6 @@
+<% if is_admin? == false %>
+<% redirect_admin %>
+<% end %>
 <% provide(:title, "Add new topic") %>
 
 <div class="container">
@@ -19,10 +22,6 @@
     </div>
   <% end %>
    <p>
-    <%= f.label "Topic Id" %><br />
-    <%= f.text_field :t_id, :class => "form-control" %>
-  </p>
-   <p>
     <%= f.label "Topic Name" %><br />
     <%= f.text_field :t_name, :class => "form-control" %>
   </p>
@@ -30,7 +29,7 @@
 
 <% end %>
 <br/>
-<%= link_to "Show All Topics", show_topics_path, :class => "btn btn-warning" %>
+<%= link_to "Show All Topics", alltopics_path, :class => "btn btn-warning" %>
 
 </div>
 </div>

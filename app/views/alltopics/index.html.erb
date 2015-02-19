@@ -1,0 +1,39 @@
+<% provide(:title, "All Topics") %>
+
+<br/>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    <% if is_admin? %>
+<%= link_to "Add new topic", new_alltopic_path, :class => "btn btn-success" %>
+
+  </br></br><%end %>
+ <div class="panel panel-default">
+ <div class="panel-heading"><b>All Topics</b></div>
+
+
+  <div class="panel-body">
+
+  <% @alltopics.each do |user| %>
+  
+ <% if user %>
+               
+           <p> <%#= image_tag user.avatar.url(:thumb)%>
+
+           <%= user.id %> - <%= link_to user.t_name, user %>
+           
+           </p></br>     
+  
+  <% end %>
+ <% end %>
+  </div>
+</div>
+<%= will_paginate %>
+</div>
+
+  
+
+</div>
+</div>
+

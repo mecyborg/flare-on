@@ -1,0 +1,31 @@
+<% provide(:title, "Questions") %>
+<br/>
+<div class="container">
+    <div class="row">
+     <div class="col-md-12">
+     <% if is_admin? %>
+<%= link_to "Post new Question", new_post_quest_path, :class => "btn btn-success" %>
+  <%end%>
+  </br></br>
+    <% @post_quests.each do |ques| %>
+      <% if ques %>
+        <div class="col-md-3">
+        <div class="panel panel-danger">
+    <div class="panel-heading"><%=link_to truncate(ques.ques_text, :length => 60), ques %></div>
+        <div class="panel-body">
+          <h5>Answers: <%ans_count = Answer.where(question_id: ques.id).count%>
+          <%= ans_count %></h5>
+          Ques ID: <%= ques.id%></br>
+          Topic ID: <%= ques.t_id %></br>
+          
+        </div>
+      </div>  
+    </div>
+      <%end%>
+    <%end%>
+
+    </div>
+    <%= will_paginate %>
+  </div>
+</div>
+

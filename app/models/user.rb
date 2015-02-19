@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   before_save :create_unique_profile_id
   #before_save :add_credits
-  
+  has_many :answers, dependent: :destroy
+  has_many :ques_follows, dependent: :destroy
   
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "60x60>", :tiny => "40x40>" }, 
   :url => "/system/users/:id_partition/:style/:hash.:extension",
@@ -49,4 +50,9 @@ def create_unique_profile_id
     end while self.class.exists?(:profile_id =>profile_id)
   end
 
-  
+ def add_provider(auth_hash)
+  # Check if the provider already exists, so we don't add it twice
+  unless authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+    Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+  end
+end 
