@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: MyString
+  user_to: MyString
   user_from: MyString
-  type: 
+  noti_type: MyString
 
 two:
-  user: MyString
+  user_to: MyString
   user_from: MyString
-  type: 
+  noti_type: MyString

@@ -1,0 +1,76 @@
+<% provide(:title, @title) %>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+  <div class="col-md-3">
+    
+    <div class="panel panel-default">
+  
+  <div class="panel-body">
+      <%= image_tag @user.avatar.url(:medium),:class => "img-responsive center-block"%>
+      <h4 style="text-align:center;"><%= link_to @user.profile_name, @user %></h4>
+         
+      </div>   
+   
+    
+     </div>
+      </div>
+      <div class="col-md-6 ">
+ <%= render 'shared/stats' %>
+ </div>
+ <br/>
+ <br/><br/>
+    <div class="col-md-9 ">
+
+ 
+ <div class="panel panel-default">
+
+ <div class="panel-heading"><b><%= @title %></b></div>
+
+
+  <div class="panel-body">
+
+  
+  <table class="table table-hover">
+  <tr>
+  
+    <td> Avatar
+    </td>
+  <td>Username
+    </td>
+    <td>Name
+    </td>
+   
+  </tr>
+  <% @users.each do |user| %>
+  
+ <% if user %>
+               
+    
+  
+  <tr>
+    
+    <td><%= image_tag user.avatar.url(:tiny)%></td>
+    <td><%= link_to user.profile_name, user %></td>
+    <td><%= user.first_name %> <%= user.last_name %></td>
+    
+
+  </tr>
+
+
+  <% end %>
+ <% end %>
+</table>
+
+  </div>
+</div>
+
+<%= will_paginate %>
+
+</div>
+
+  
+
+</div>
+</div>
+

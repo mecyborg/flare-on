@@ -11,7 +11,19 @@ class UsersController < ApplicationController
     # @users = User.paginate(page: params[:page], :per_page => 10)
 
     # end
+    def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
 
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
   def index           #all users index
     @users = User.paginate(page: params[:page], :per_page => 10)
   end
@@ -53,6 +65,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id]) 
+  end
+
   def edit
     @user = User.find(params[:id]) 
     rescue ActiveRecord::RecordNotFound
@@ -89,5 +105,6 @@ class UsersController < ApplicationController
   
     #rescue ActiveRecord::RecordNotFound
   #end
+
  
 end

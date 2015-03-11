@@ -19,7 +19,7 @@ gem 'omniauth-facebook'
 gem 'unicorn-rails'
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 #gem 'mysql2'
@@ -60,3 +60,4 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem "paperclip", "~> 4.2"
+gem "rspec-rails"

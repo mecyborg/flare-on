@@ -28,23 +28,17 @@ class ApplicationController < ActionController::Base
   
 
 protect_from_forgery with: :null_session 
-  
-
 
 before_filter :require_login,  only: [:edit, :update] 
 
 #after_filter :user_activity       #who is online
-
-
-  private
-  
-
-
-  def current_user
+def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     #rescue ActiveRecord::RecordNotFound
   end
 
+  private
+  
     # def admin_user?
     # @admin_user ||= User.where(email: current_user[:email])
     
@@ -71,35 +65,12 @@ before_filter :require_login,  only: [:edit, :update]
     end
   end
 	
-   #  def ques_show
-   #  @ques_show ||= Ques.all #if session[:user_id]
-  	# end
 
-  	# def userprofile
-   #  @userprofile ||= User.find_by(email: params[:email])
-  	# end
-
-  	# def allusers_show
-   #  @allusers_show ||= User.all #if session[:user_id]
-  	# end
-
-    # def postques_show
-    #   @postques_show ||= PostQuest.all  
-    # end  
 
   	def postques_show_sidebar
       @postques_show_sidebar ||= PostQuest.last(2)  
     end 
 
-   #  def alltopics_show
-   #  @alltopics_show ||= Alltopic.all #if session[:user_id]
-  	# end
-
-   
-
-    # def anyques
-    # @anyques ||= PostQuest.find_by(id: params[:id])
-    # end
 
     def user_follow_ques
       @user_follow_ques ||= QuesFollow.exists?(q_id: params[:id])
@@ -122,24 +93,16 @@ before_filter :require_login,  only: [:edit, :update]
     # end
 
     def followed_ques
-    @followed_ques ||= QuesFollow.where(email: current_user.email)
+    @followed_ques ||= QuesFollow.where(email: current_user[:email])
     end
 
-
-    # def user_follow_ques
-    #   @user_follow_ques ||= QuesFollow.exists?(q_id: params[:q_id])
-    # end
-
-    # def ans_upvoted
-    # @ans_upvoted ||= AnsUpvote.exists?(u_id: session[:user_id] AND ans_id: user.id) if session[:user_id]
-    # end
 
     def ans_upvote_count
     @ans_upvote_count ||= AnsUpvote.find_by(id: params[:id]).count
     end
 
     def allnoti_show
-    @allnoti_show ||= Notification.where(user_to: current_user.email).order('notifications.created_at ASC').reverse_order #if session[:user_id]
+    @allnoti_show ||= Notification.where(user_to: current_user[:email]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
   end
 
   def is_admin?

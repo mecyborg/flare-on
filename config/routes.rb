@@ -10,11 +10,6 @@ Bootstrap::Application.routes.draw do
 
   get 'topic_follows/edit'
   
- # get 'alltopics/new'
-
- # get 'alltopics/show'
-
-  resources :post_attachments
   resources :first_home
 
   get 'browse/home'
@@ -39,11 +34,11 @@ Bootstrap::Application.routes.draw do
 
   root :to => 'high_voltage/pages#show', id: 'home'
 
-  resources :posts
+
   
   
 
-  get "myprofile" => "profile#myprofile", :as => "myprofile"
+  get "myprofile" => "users#myprofile", :as => "myprofile"
   #get "edit_profile" => "users#edit", :as => "edit_profile"
 
   get "log_out" => "sessions#destroy", :as => "log_out"
@@ -97,7 +92,7 @@ Bootstrap::Application.routes.draw do
 
   #root :to => "users#new"
   resources :alltopics
-  resources :users
+  #resources :users
   resources :sessions
 
    resources :topic_follows do
@@ -113,4 +108,11 @@ Bootstrap::Application.routes.draw do
    # resources :answers do
    # post :new, :on => :collection
    # end
+   resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships,       only: [:create, :destroy]
+
 end

@@ -27,9 +27,7 @@ class AlltopicsController < ApplicationController
 def show
     def anytopic      #individual topic page
     @anytopic ||= Alltopic.find(params[:id])
-    end
-
-    
+    end   
 end
   # def topic_ques
   #   @topic_ques ||= @anytopic.where(t_id: params[:id])

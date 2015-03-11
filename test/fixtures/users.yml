@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: Nikunj
+  last_name: Gupta
+  email: mecyborg@ideabata.com
+  password_hash: MyString
+  password_salt: MyString
+
+two:
+  first_name: Michael
+  last_name: MyString
+  email: MyString
+  password_hash: MyString
+  password_salt: MyString

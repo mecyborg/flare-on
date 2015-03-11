@@ -1,9 +1,13 @@
+<% if allans_show.count == 0%>
+  <h4>There are no answers right now. Care to add !</h4>
+
+    <%else%>
 <% allans_show.find_each do |ans|%>
  
  <% if ans %>
 
 
-          <p><em>Answered By:</em> <b><%= ans.user_id %></b> (<%= time_ago_in_words(ans.created_at) %> ago)</p>
+          <p><b><%= ans.user_id %></b> (<%= time_ago_in_words(ans.created_at) %> ago)</p>
            <p> <div class="well"><p><%= ans.answer_content %></div>
            </p><%#= link_to "Edit Answer", edit_answer_path(@anyans) %>
            <p>
@@ -26,6 +30,6 @@
 
    
  <% end %>
-
+<hr>
  <% end %>
-    
+    <%end%>

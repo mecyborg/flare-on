@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207220059) do
+ActiveRecord::Schema.define(version: 20150220201753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,6 @@ ActiveRecord::Schema.define(version: 20150207220059) do
   create_table "ans_upvotes", force: true do |t|
     t.string   "u_id"
     t.integer  "ans_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "answer_upvotes", force: true do |t|
-    t.string   "answer_id"
-    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,16 +54,6 @@ ActiveRecord::Schema.define(version: 20150207220059) do
     t.datetime "updated_at"
   end
 
-  create_table "file_uploads", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "links", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "notifications", force: true do |t|
     t.string   "user_to"
     t.string   "user_from"
@@ -78,13 +61,6 @@ ActiveRecord::Schema.define(version: 20150207220059) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ans_id"
-  end
-
-  create_table "post_attachments", force: true do |t|
-    t.integer  "user_id"
-    t.string   "avatar"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "post_quests", force: true do |t|
@@ -97,22 +73,6 @@ ActiveRecord::Schema.define(version: 20150207220059) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "ques", force: true do |t|
-    t.string   "Ques"
-    t.string   "Category"
-    t.boolean  "Upvote"
-    t.boolean  "follow"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "ques_follows", force: true do |t|
     t.integer  "q_id"
     t.string   "email"
@@ -120,12 +80,16 @@ ActiveRecord::Schema.define(version: 20150207220059) do
     t.datetime "updated_at"
   end
 
-  create_table "question_follows", force: true do |t|
-    t.string   "question_id"
-    t.string   "user_id"
+  create_table "relationships", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "topic_follows", force: true do |t|
     t.integer  "t_id"
@@ -143,7 +107,6 @@ ActiveRecord::Schema.define(version: 20150207220059) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "profile_name"
-    t.string   "profile_id",                          null: false
     t.string   "bio"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -152,20 +115,5 @@ ActiveRecord::Schema.define(version: 20150207220059) do
     t.boolean  "admin_role",          default: false
     t.string   "name"
   end
-
-  create_table "votes", force: true do |t|
-    t.integer  "votable_id"
-    t.string   "votable_type"
-    t.integer  "voter_id"
-    t.string   "voter_type"
-    t.boolean  "vote_flag"
-    t.string   "vote_scope"
-    t.integer  "vote_weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
 end

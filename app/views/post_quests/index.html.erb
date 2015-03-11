@@ -10,13 +10,14 @@
     <% @post_quests.each do |ques| %>
       <% if ques %>
         <div class="col-md-3">
-        <div class="panel panel-danger">
-    <div class="panel-heading"><%=link_to truncate(ques.ques_text, :length => 60), ques %></div>
+        <div class="panel panel-success">
+    <div class="panel-heading">
+    <%=link_to truncate(ques.ques_text, :length => 60), ques %></div>
         <div class="panel-body">
-          <h5>Answers: <%ans_count = Answer.where(question_id: ques.id).count%>
-          <%= ans_count %></h5>
-          Ques ID: <%= ques.id%></br>
-          Topic ID: <%= ques.t_id %></br>
+          <button type="button" class="btn btn-danger btn-sm">Answers <%ans_count = Answer.where(question_id: ques.id).count%>
+           <span class="badge"><%= ans_count %></span></button>
+           <button type="button" class="btn btn-default btn-sm">Topic ID <span class="badge"><%= ques.t_id %></span></button>
+          </br>
           
         </div>
       </div>  
