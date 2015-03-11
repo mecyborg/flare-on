@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/glittergallery/GlitterGallery.svg?branch=master)](https://travis-ci.org/glittergallery/GlitterGallery)
+[![Build Status](https://travis-ci.org/mecyborg/flare-on.svg?branch=master)](https://travis-ci.org/mecyborg/flare-on)
 
 [![security](https://hakiri.io/github/mecyborg/flare-on/master.svg)](https://hakiri.io/github/mecyborg/flare-on/master)
 
