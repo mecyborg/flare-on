@@ -37,9 +37,8 @@ class AnswersController < ApplicationController
      #@newans.answer_content = params[:answer_content]
 
     if @newans.save
-      #redirect_to show_quest_path
       redirect_to :back, :flash => { :success => "Answer Posted !" }
-    #  redirect_to sign_up_path, :flash => { :success => "Answer Posted !" }
+    
 
     
     end 

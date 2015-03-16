@@ -1,5 +1,6 @@
 Bootstrap::Application.routes.draw do
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   get 'myactivity/new'
 
   get 'myactivity/show'
