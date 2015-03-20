@@ -1,21 +1,19 @@
+<% provide(:title, "Edit Answer") %>
 
-<% ques_text = @anyques.ques_text
-  t_id = @anyques.t_id %>
-
-  <%= form_for [@anyques, Answer.new] do |f| %>
-  <% if Answer.new.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <h4>Please check for the errors and retry.</h4>
-      <ul>
-        <% for message in Answer.new.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="container">
+   
+    <div class="row">
+    
+<div class="col-md-6 col-md-offset-3">
+<b>Question: <%= @anyans.question_id%></b><hr/>
+  <%= form_for @anyans do |f| %>
    <p>
     <%= f.label "Your Answer" %><br />
-    <%= f.text_area :answer_content, :cols => 10, :rows => 3, :class => "form-control" %>
+    <%= f.bootsy_area :answer_content, :cols => 12, :rows => 12, :class => "form-control" %>
   </p>
   <%= f.submit "Submit", :class => "btn btn-success"%>
 <% end %>
+
+</div>
+</div>
+</div>

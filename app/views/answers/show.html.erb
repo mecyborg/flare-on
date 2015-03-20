@@ -14,8 +14,8 @@
 
 
           <p><em>Answered By:</em> <b><%= ans.user_id %></b> (<%= time_ago_in_words(ans.created_at) %> ago)</p>
-           <p> <div class="well"><p><%= ans.answer_content %></div>
-           </p><%#= link_to "Edit Answer", edit_answer_path(@anyans) %>
+           <p> <div class="well"><p><%= raw(ans.answer_content) %></div>
+           </p><%#= link_to "Edit Answer", edit_answer_path(@an)ans) %>
            <p>
        
   <%#if AnsUpvote.exists?%>

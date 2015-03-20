@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
             flash[:success] = "Profile updated! Feeling Refreshed already."
-      #:flash => { :success => "Profile Updated! Feeling Refreshed already." }
+
       render "edit"
     else
       render "edit"

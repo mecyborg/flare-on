@@ -30,37 +30,31 @@
 
   <div class="panel-body">
 
-  
-  <table class="table table-hover">
-  <tr>
-  
-    <td> Avatar
-    </td>
-  <td>Username
-    </td>
-    <td>Name
-    </td>
-   
-  </tr>
   <% @users.each do |user| %>
   
  <% if user %>
                
     
   
-  <tr>
-    
-    <td><%= image_tag user.avatar.url(:tiny)%></td>
-    <td><%= link_to user.profile_name, user %></td>
-    <td><%= user.first_name %> <%= user.last_name %></td>
+
+  <div class="col-md-3">
+    <div class="col-md-3">
+  
+        <%= image_tag user.avatar.url(:tiny)%>
+    </div>
+    <div class="col-md-9">
+      <p><%= link_to user.profile_name, user %><br><small><%= user.first_name %> <%= user.last_name %></small></p>
+    </div>
+  </div>
+
     
 
-  </tr>
+
 
 
   <% end %>
  <% end %>
-</table>
+
 
   </div>
 </div>

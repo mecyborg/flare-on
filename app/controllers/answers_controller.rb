@@ -28,7 +28,11 @@ class AnswersController < ApplicationController
 
   def create
    @anyques ||= PostQuest.find(params[:post_quest_id])
+   @anyans ||= Answer.exists?(user_id: current_user[:email], question_id: params[:post_quest_id])
 
+   unless @anyans 
+
+    
     @newans = Answer.new
      @newans.question_id = params[:post_quest_id]
      @newans.user_id = current_user.email
@@ -39,15 +43,26 @@ class AnswersController < ApplicationController
     if @newans.save
       redirect_to :back, :flash => { :success => "Answer Posted !" }
     
-
-    
     end 
+    else
+      redirect_to :back, :flash => { :danger => "Already Posted !" }
+
+    end
+
   end
 
   def edit
-   @anyans ||= Answer.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
+  @anyans ||= Answer.find_by(id: params[:id])
+  if @anyans.blank?
+    redirect_to post_quests_path, :flash => { :danger => "Page doesn't exist" }
+  else
+    unless @anyans.user_id == current_user.email
+      redirect_to post_quests_path, :flash => { :danger => "You don't have the permissions" }
+    end  
+  end
   
+
+  # rescue ActiveRecord::RecordNotFound
   end
 
   def index
@@ -56,20 +71,23 @@ class AnswersController < ApplicationController
   end
   
   def update
-   @anyans ||= PostQuest.find(params[:id])
+   @anyans ||= Answer.find(params[:id])
     
-    # if @user.update_attributes(user_params)
-    #         flash[:success] = "Profile updated! Feeling Refreshed already."
-    #   #:flash => { :success => "Profile Updated! Feeling Refreshed already." }
-    #   render "edit"
-    # else
-    #   render "edit"
-    # end
+    if @anyans.update_attributes(addans_params)
+            flash[:success] = "Changes saved !"
+      
+    
+      render "edit"
+    else
+            flash[:danger] = "Error"
+      
+    end
 
   end
     
-   #  def addans_params
-   #  params.require(:answer).permit(:answer_content)
-   # end
+  private
+    def addans_params
+    params.require(:answer).permit(:answer_content)
+   end
     
 end

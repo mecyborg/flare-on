@@ -18,7 +18,7 @@
   <% end %>
   <% answered.find_each do |myanswers|%>
  <% if myanswers %>
-           <p> You answered <mark><b><%= truncate(myanswers.answer_content, :length => 30)%></b></mark> on question <%= myanswers.question_id %>. (<%= time_ago_in_words(myanswers.created_at) %> ago)  </p>  
+           <p> You answered on question <%= myanswers.question_id %>. (<%= time_ago_in_words(myanswers.created_at) %> ago)  </p>  
                       
             
   <% end %>
