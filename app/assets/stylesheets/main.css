@@ -41,17 +41,12 @@ hr {
 	color: white;
 	font-weight: 700;
 	text-align: left;
-	
-    
 }
 
 #headerwrap p {
 	text-align: left;
-	color: white;
-	
+	color: white;	
 }
-
-/* intro Wrap */
 
 #intro {
 	padding-top: 50px;
@@ -75,7 +70,7 @@ hr {
 	font-size: 20px;
 }
 
-/* Showcase Wrap */
+
 
 #showcase {
 	display: block;
@@ -113,7 +108,7 @@ hr {
 	font-size: 18px;
 }
 
-/* Copyright Wrap */
+
 
 #c {
 	background: #222222;
@@ -125,13 +120,13 @@ hr {
 	color: white
 }
 
-/* Navbar */
+
 .navbar-inverse {
   background-color: #00a29b;
   border-color: #00a29b;
 }
 
-/* Navbar hover dark shade */
+
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #ffffff;
@@ -146,7 +141,7 @@ hr {
     background-color: #007e79;
 }
 
-/* Navbar active */
+
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
@@ -173,11 +168,9 @@ hr {
     background-color: #007e79;
   }
 
-/* What's New Button */
+
   .btn-info {
   color: #ffffff;
   background-color: #772953;
   border-color: #772953;
 }
-
-/* Submit button on answer page */
