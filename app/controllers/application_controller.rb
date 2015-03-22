@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery with: :null_session 
+  before_filter :require_login,  only: [:edit,:update] 
 
   helper_method :current_user
   helper_method :ques_show
@@ -24,96 +25,71 @@ class ApplicationController < ActionController::Base
   helper_method :is_admin?
   helper_method :redirect_admin
   #helper_method :online?
+  helper_method :user_name
+  helper_method :user_avatar
 
-  
-
-protect_from_forgery with: :null_session 
-
-before_filter :require_login,  only: [:edit, :update] 
-
-#after_filter :user_activity       #who is online
-def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    #rescue ActiveRecord::RecordNotFound
-  end
-
-  private
-  
-    # def admin_user?
-    # @admin_user ||= User.where(email: current_user[:email])
-    
-    # # if @admin_user == true
-    # #   #render "index"
-    # #   @admin_user_true == true
-    # # else
-    # #   #render
-    # #   @admin_user_true == false
-    # # end
-    # end
-
-
-  # def user_activity
-  # current_user.try :touch
-  # end
-
-  #scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
-    
-
-   def require_login
-    unless current_user
-      redirect_to log_in_path, :flash => { :danger => "Please Login or Sign Up First." }
+    def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
-  end
-	
 
+    def user_name (email)
+     # @username ||= User.where("email = ?", email).profile_name
+      @user_name ||= User.where("email = ?", email).pluck(:profile_name).first
+
+    end
+    
+    def user_avatar(profile_name)
+      @user_avatar = User.find_by(profile_name: profile_name).avatar
+    end
+
+  private    
+
+    def require_login
+      unless current_user
+        redirect_to log_in_path, :flash => { :danger => "Please Login or Sign Up First." }
+      end
+    end
 
   	def postques_show_sidebar
       @postques_show_sidebar ||= PostQuest.last(2)  
     end 
 
-
     def user_follow_ques
       @user_follow_ques ||= QuesFollow.exists?(q_id: params[:id])
     end
 
-    
-
     #remove 'not' when heroku problem is fixed
    
     def credits_show
-    @credits_show ||= Credit.where(u_id: current_user[:email]).sum(:u_value)  
+      @credits_show ||= Credit.where(u_id: current_user[:profile_name]).sum(:u_value)  
     end
 
     def credits_info
-    @credits_info ||= Credit.where(u_id: current_user[:email]).order('notifications.created_at ASC').reverse_order.where.not(uid_from: "new_user_bonus")
+      @credits_info ||= Credit.where(u_id: current_user[:profile_name]).order('notifications.created_at ASC').reverse_order.where.not(uid_from: "new_user_bonus")
     end
-    # def login_redirect
-    #     #flash[:notice] = 'Successfully checked in'
-    #    redirect_to log_in_path, :flash => { :danger => "Please Login" }
-    # end
 
     def followed_ques
-    @followed_ques ||= QuesFollow.where(email: current_user[:email])
+      @followed_ques ||= QuesFollow.where(email: current_user[:email])
     end
 
 
     def ans_upvote_count
-    @ans_upvote_count ||= AnsUpvote.find_by(id: params[:id]).count
+      @ans_upvote_count ||= AnsUpvote.find_by(id: params[:id]).count
     end
 
     def allnoti_show
-    @allnoti_show ||= Notification.where(user_to: current_user[:email]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
-  end
+      @allnoti_show ||= Notification.where(user_to: current_user[:profile_name]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
+    end
 
-  def is_admin?
-  if current_user.admin_role?
-    return true
-  else
-    return false
-  end
-  end
+    def is_admin?
+      if current_user.admin_role?
+        return true
+      else
+        return false
+      end
+    end
 
-  def redirect_admin
-    redirect_to myprofile_path, :flash => { :danger => "It's hell there! Stay Away." }
-  end
+    def redirect_admin
+      redirect_to myprofile_path, :flash => { :danger => "It's hell there! Stay Away." }
+    end
 end

@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+before_filter :require_login,  only: [:edit,:update] 
 def create
     @user = User.find(params[:followed_id])
     current_user.follow(@user)

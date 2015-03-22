@@ -35,8 +35,16 @@
     
           <h2> <%= anyques.ques_text %> </h2> </br> 
           <%if current_user %> 
-        
+          <%if @myans.blank? %>        
           <%= render partial: "/answers/new" %>
+          <%#= current_user[:profile_name] %>
+
+          <%else%>
+          <%= link_to "Edit Your Answer", edit_answer_path(@myans) %>
+          <%#= render partial: "/answers/edit" %>
+
+          <%#= @myans.user_id %>
+          <%end%>
           <%else %>
           Login to answer !      
           <% end %>

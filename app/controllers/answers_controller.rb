@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-	
+	before_filter :require_login,  only: [:edit,:update] 
 	helper_method :allans_show
 
   def allans_show
@@ -17,6 +17,12 @@ class AnswersController < ApplicationController
     def show
   # @anyques ||= Answer.where(question_id: params[:id])
   #@anyans ||= Answer.find(params[:id])
+ @anyans ||= Answer.exists?(user_id: current_user[:profile_name], question_id: params[:post_quest_id])
+  #@myans ||= Answer.find_by(id: session[:user_id])
+ # @myans ||= Answer.find_by(user_id: current_user[:profile_name])
+
+ # @myans ||= Answer.find(current_user[:profile_name])
+
     def allans_show
     @allans_show ||= Answer.where(question_id: params[:id]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
     end
@@ -28,14 +34,14 @@ class AnswersController < ApplicationController
 
   def create
    @anyques ||= PostQuest.find(params[:post_quest_id])
-   @anyans ||= Answer.exists?(user_id: current_user[:email], question_id: params[:post_quest_id])
+   @anyans ||= Answer.exists?(user_id: current_user[:profile_name], question_id: params[:post_quest_id])
 
    unless @anyans 
 
     
     @newans = Answer.new
      @newans.question_id = params[:post_quest_id]
-     @newans.user_id = current_user.email
+     @newans.user_id = current_user.profile_name
      answers1 = params[:answer]
      @newans.answer_content = answers1[:answer_content]
      #@newans.answer_content = params[:answer_content]
@@ -56,7 +62,7 @@ class AnswersController < ApplicationController
   if @anyans.blank?
     redirect_to post_quests_path, :flash => { :danger => "Page doesn't exist" }
   else
-    unless @anyans.user_id == current_user.email
+    unless @anyans.user_id == current_user.profile_name
       redirect_to post_quests_path, :flash => { :danger => "You don't have the permissions" }
     end  
   end

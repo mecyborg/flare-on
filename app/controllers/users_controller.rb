@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   # before_action :logged_in_user, only: [:edit, :update]
     before_action :correct_user,   only: [:edit, :update]  
     helper_method :correct_url
+    before_filter :require_login,  only: [:index,:show,:edit,:update] 
+
     #acts_as_voter
     helper_method :userdetails
    # has_many :authorizations
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   def index           #all users index
+    
     @users = User.paginate(page: params[:page], :per_page => 10)
   end
  
@@ -44,10 +47,6 @@ class UsersController < ApplicationController
     
     end
 
-    # def index
-    #   redirect_to sign_up_path
-    # end
-
   def new
     @user = User.new
   end
@@ -60,8 +59,7 @@ class UsersController < ApplicationController
       # @add_credit.save
       redirect_to log_in_path, :flash => { :success => "Signed Up Successfully. You can login now !" }
     else
-
-      render "users/new"
+      render "new"
     end
   end
 

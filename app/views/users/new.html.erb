@@ -1,46 +1,48 @@
 <% provide(:title, "Sign Up") %>
 
 <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
- <div class="col-md-6 col-md-offset-3">
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <h4>Please check for the errors and retry.</h4>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for @user do |f| %>
+        <% if @user.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <h4>Please check for the errors and retry.</h4>
+            <ul>
+              <% for message in @user.errors.full_messages %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
     </div>
-  <% end %>
+    <div class="col-md-4 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Sign Up</h2>
+          
+          <p><%= f.label "Email *" %><br />
+            <%= f.text_field :email, :placeholder => "Your Email",:class => "form-control" %>
+          </p>
+  
+          <p><%= f.label "Password *" %><br />
+            <%= f.password_field :password,:placeholder => "Password", :class => "form-control" %>
+          </p>
+
+          <p><%= f.label "Username(Profile name) *" %><br />
+            <%= f.text_field :profile_name,:placeholder => "Choose a creative username", :class => "form-control" %>
+          </p>
+
+          <%= f.submit "Sign Up", :class => "btn btn-success"%>
+      <% end %>
+        <br/>
+        <br/>
+        </div>
+      </div>
+      Already signed Up ? <%= link_to 'Login now !',log_in_path %>
+      <br/>
+      <br/>
+    </div>
   </div>
- <div class="col-md-3 col-md-offset-4">
-<h2>Sign Up</h2>
-  
-  <p>
-    <%= f.label "Email *" %><br />
-    <%= f.text_field :email, :placeholder => "Your Email",:class => "form-control" %>
-  </p>
-  
-  <p>
-    <%= f.label "Password *" %><br />
-    <%= f.password_field :password,:placeholder => "Password", :class => "form-control" %>
-  </p>
-   <p>
-    <%= f.label "Username(Profile name) *" %><br />
-    <%= f.text_field :profile_name,:placeholder => "Choose a creative username", :class => "form-control" %>
-  </p>
-  <%= f.submit "Sign Up", :class => "btn btn-success"%>
-  <% end %>
-  </br>
-  </br>
-Already signed Up ? <%= link_to 'Login now !',log_in_path %>
+</div>
 
-  
-
-</div>
-</div>
-</div>
 

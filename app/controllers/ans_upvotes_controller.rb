@@ -1,5 +1,5 @@
 class AnsUpvotesController < ApplicationController
-
+  before_filter :require_login,  only: [:edit,:update] 
   
   def new
     #@ans_upvote = AnsUpvote.new
@@ -11,11 +11,11 @@ class AnsUpvotesController < ApplicationController
     #    redirect_to :back, :flash => { :danger => "You can't upvote your own answer. That's not fair !" }
     #  else
     @ansdetails = Answer.find(params[:answer_id])
-    uid_from1 = current_user.email
+    uid_from1 = current_user.profile_name
   	@ans_upvote = AnsUpvote.new
   	@ans_upvote.ans_id = params[:answer_id]
     
-    @ans_upvote.u_id = current_user.email
+    @ans_upvote.u_id = current_user.profile_name
       
        @add_credit =  Credit.new
         @add_credit.u_id = @ansdetails.user_id

@@ -1,5 +1,5 @@
 class PostQuestsController < ApplicationController
-  #helper_method :current_user_answered?
+before_filter :require_login,  only: [:show,:edit,:update] 
 helper_method :allans_show
 
   def allans_show
@@ -37,10 +37,13 @@ helper_method :allans_show
   def show
    
    @anyques ||= PostQuest.find(params[:id])
+   #@anyans ||= Answer.exists?(user_id: current_user[:email], question_id: params[:post_quest_id])
    
+    @myans ||= Answer.find_by(user_id: current_user[:profile_name])
  
   
   
+    
   end
 
   

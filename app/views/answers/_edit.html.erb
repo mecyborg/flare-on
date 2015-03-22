@@ -1,0 +1,7 @@
+<%= form_for @anyans do |f| %>
+   <p>
+    <%= f.label "Your Answer" %><br />
+    <%= f.bootsy_area :answer_content, :cols => 12, :rows => 12, :class => "form-control" %>
+  </p>
+  <%= f.submit "Submit", :class => "btn btn-success"%>
+<% end %>

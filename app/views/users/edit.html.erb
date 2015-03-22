@@ -32,8 +32,8 @@
     <%= f.text_field :last_name, :class => "form-control" %>
   </p>
   <p>
-    <%= f.label "Username" %><br />
-    <%= f.text_field :profile_name, :class => "form-control" %>
+    <%= f.label "Username (Cannot be changed)" %><br />
+    <%= f.text_field :profile_name, :readonly => true, "data-toggle"=>"tooltip", :title=>"You cannot change your username", :class => "form-control" %>
   </p>
   <p>
     <%= f.label "Avatar" %> <small> (Filesize<600KB)</small> <br />
