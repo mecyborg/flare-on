@@ -1,4 +1,6 @@
 class QuesFollowController < ApplicationController
+  before_filter :require_login
+  
 def new
     #@ques_follows = QuesFollow.new
     #puts params.inspect

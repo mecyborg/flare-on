@@ -1,4 +1,5 @@
 class TopicFollowsController < ApplicationController
+  before_filter :require_login
   
   def new
     @topic_follows = TopicFollow.new

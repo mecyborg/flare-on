@@ -1,5 +1,6 @@
 class AnsUpvotesController < ApplicationController
-  before_filter :require_login,  only: [:edit,:update] 
+  before_filter :require_login
+  
   
   def new
     #@ans_upvote = AnsUpvote.new

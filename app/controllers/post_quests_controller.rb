@@ -40,13 +40,13 @@ helper_method :allans_show
    #@anyans ||= Answer.exists?(user_id: current_user[:email], question_id: params[:post_quest_id])
    
     @myans ||= Answer.find_by(user_id: current_user[:profile_name])
- 
-  
-  
+
     
   end
 
-  
+  def edit
+    render_404
+  end
   
 
   # def newans

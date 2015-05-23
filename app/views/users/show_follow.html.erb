@@ -1,7 +1,4 @@
 <% provide(:title, @title) %>
-<div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
   <div class="col-md-3">
     
     <div class="panel panel-default">
@@ -10,32 +7,24 @@
       <%= image_tag @user.avatar.url(:medium),:class => "img-responsive center-block"%>
       <h4 style="text-align:center;"><%= link_to @user.profile_name, @user %></h4>
          
-      </div>   
-   
+      </div>      
     
      </div>
-      </div>
+</div>
       <div class="col-md-6 ">
  <%= render 'shared/stats' %>
  </div>
- <br/>
- <br/><br/>
-    <div class="col-md-9 ">
-
  
+    <div class="col-md-9 ">
  <div class="panel panel-default">
 
  <div class="panel-heading"><b><%= @title %></b></div>
-
 
   <div class="panel-body">
 
   <% @users.each do |user| %>
   
  <% if user %>
-               
-    
-  
 
   <div class="col-md-3">
     <div class="col-md-3">
@@ -46,10 +35,6 @@
       <p><%= link_to user.profile_name, user %><br><small><%= user.first_name %> <%= user.last_name %></small></p>
     </div>
   </div>
-
-    
-
-
 
 
   <% end %>
@@ -65,6 +50,5 @@
 
   
 
-</div>
-</div>
+
 

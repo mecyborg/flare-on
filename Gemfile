@@ -6,7 +6,8 @@ source 'https://rubygems.org'
 group :development, :test do
 	gem "rack-mini-profiler"
 	gem 'rails-footnotes', '~> 4.0'
-	gem 'spring'
+	#gem 'spring'
+	#gem 'bullet'
 end
 # group :production do
 #   gem 'pg'

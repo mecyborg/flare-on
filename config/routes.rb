@@ -5,9 +5,9 @@ Bootstrap::Application.routes.draw do
 
   get 'myactivity/show'
 
-  get 'notifications/new'
+#  get 'notifications/new'
 
-  get 'notifications/show'
+  #get 'notifications/show'
 
   get 'topic_follows/edit'
   
@@ -57,6 +57,8 @@ Bootstrap::Application.routes.draw do
   get "credits" => "credits#show", :as => "credits"
  # get "any_user_profile" => "profile#userprofile", :as => "any_user_profile"
   get "myactivity" => "myactivity#show", :as => "myactivity"
+  get "mynotifications" => "notifications#show", :as => "mynotifications"
+
   get 'users/:id/delete_avatar', to: 'users#delete_avatar', as: 'delete_avatar'
   
 #  get "alltopics/topic/:t_id", to: 'alltopics#show'

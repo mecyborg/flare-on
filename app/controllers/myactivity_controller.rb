@@ -1,7 +1,7 @@
 class MyactivityController < ApplicationController
   helper_method :answered
   helper_method :myupvotes
-  before_filter :require_login,  only: [:edit,:update] 
+  before_filter :require_login
 
   def new
   end

@@ -1,4 +1,6 @@
 class AlltopicsController < ApplicationController
+  before_filter :require_login
+  
   def new
     @alltopic = Alltopic.new
   end

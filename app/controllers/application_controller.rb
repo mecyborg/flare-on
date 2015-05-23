@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
   helper_method :user_name
   helper_method :user_avatar
 
+
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+
+
     def current_user
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
@@ -42,7 +46,11 @@ class ApplicationController < ActionController::Base
       @user_avatar = User.find_by(profile_name: profile_name).avatar
     end
 
-  private    
+  private   
+
+    def render_404
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end 
 
     def require_login
       unless current_user
