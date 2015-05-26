@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :ques_follows, dependent: :destroy
   has_many :authorizations
-  validates :name,:email, :presence => true
+  #validates :first_name,:email, :presence => true
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "60x60>", :tiny => "40x40>" }, 
   :url => "/system/users/:id_partition/:style/:hash.:extension",
     :hash_secret => "akfahudagwlgauwgiualsdauyingacbbahdgkabshdabdsga",
