@@ -77,11 +77,11 @@ end
 
 
 
-# def create_unique_profile_id
-#     begin
-#       self.profile_id=SecureRandom.base64(8)
-#     end while self.class.exists?(:profile_id =>profile_id)
-#   end
+def create_unique_profile_id
+    begin
+      self.profile_id=SecureRandom.base64(8)
+    end while self.class.exists?(:profile_id =>profile_id)
+  end
 
 
 
