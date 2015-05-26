@@ -1,29 +1,31 @@
 <% provide(:title, "Questions") %>
 <br/>
 <div class="container">
-    <div class="row">
-     <div class="col-md-12">
-     <% if is_admin? %>
-<%= link_to "Post new Question", new_post_quest_path, :class => "btn btn-success" %>
-  <%end%>
-  </br></br>
-    <% @post_quests.each do |ques| %>
-      <% if ques %>
-        <div class="col-md-3">
-        <div class="panel panel-success">
-    <div class="panel-heading">
-    <%=link_to truncate(ques.ques_text, :length => 60), ques %></div>
-        <div class="panel-body">
-          <button type="button" class="btn btn-danger btn-sm">Answers <%ans_count = Answer.where(question_id: ques.id).count%>
-           <span class="badge"><%= ans_count %></span></button>
-           <button type="button" class="btn btn-default btn-sm">Topic ID <span class="badge"><%= ques.t_id %></span></button>
-          </br>
-          
-        </div>
-      </div>  
-    </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% if is_admin? %>
+        <%= link_to "Post new Question", new_post_quest_path, :class => "btn btn-success" %>
       <%end%>
-    <%end%>
+      </br></br>
+      <% @post_quests.each do |ques| %>
+        <% if ques %>
+          <div class="col-md-4">
+            <div class="panel panel-success">
+            <%= link_to image_tag("../assets/ques.jpg", class: "img-responsive"), ques %>
+              <div class="panel-body">
+                <h4><%=link_to truncate(ques.ques_text, :length => 100), ques %></h4>
+                <br /><br />
+                <div align="center">
+                <button type="button" class="btn btn-info pull-left">Answers <%ans_count = Answer.where(question_id: ques.id).count%>
+                <span class="badge"><%= ans_count %></span></button>
+                <button type="button" class="btn btn-danger pull-right">Topic ID <span class="badge"><%= ques.t_id %></span></button>
+                </div>
+                </br>
+              </div>
+            </div>  
+          </div>
+        <%end%>
+      <%end%>
 
     </div>
     <%= will_paginate %>
