@@ -109,20 +109,11 @@ class UsersController < ApplicationController
     else
       flash[:error] = "Sorry. User does not exist"
       redirect_to sign_up_url
-    end
-
+    end  
+  end
+  
   def user_params
     params.require(:user).permit(:first_name,:last_name,:email, :password, :profile_name,:bio,:avatar)
   end
-  # def new_credits_params
-  #   params.require(:credit).permit(:u_id => :email,:ans_id => "new_user_bonus",:uid_from => "new_user_bonus", :u_value => "50")
   
-  # end
-  
-    #rescue ActiveRecord::RecordNotFound
-  #end
-
-  
-end
- 
 end
