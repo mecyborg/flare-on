@@ -59,9 +59,9 @@ class UsersController < ApplicationController
     if @user.save
       # @add_credit.save
       UserMailer.registration_confirmation(@user).deliver
-        flash[:success] = "Please confirm your email address to continue"
+        #flash[:success] = "Please confirm your email address to continue"
       #redirect_to log_in_path, :flash => { :success => "Signed Up Successfully. You can login now !" }
-      #redirect_to log_in_path, :flash => { :success => "Please confirm your email address to continue" }
+      redirect_to log_in_path, :flash => { :success => "Please check your inbox for confirmation." }
       
     else
 

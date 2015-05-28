@@ -1,5 +1,5 @@
-Hi <%= @user.first_name %>,
+Hi <%= @user.profile_name %>,
 
-Thanks for registering! To confirm your registration click the URL below.
+Thanks for registering on Ideabata alpha! To confirm your registration click this link.
 
 <%= confirm_email_user_url(@user.confirm_token) %>
