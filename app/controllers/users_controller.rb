@@ -58,7 +58,11 @@ class UsersController < ApplicationController
         
     if @user.save
       # @add_credit.save
-      redirect_to log_in_path, :flash => { :success => "Signed Up Successfully. You can login now !" }
+      UserMailer.registration_confirmation(@user).deliver
+        flash[:success] = "Please confirm your email address to continue"
+      #redirect_to log_in_path, :flash => { :success => "Signed Up Successfully. You can login now !" }
+      #redirect_to log_in_path, :flash => { :success => "Please confirm your email address to continue" }
+      
     else
 
       render "users/new"
@@ -95,6 +99,18 @@ class UsersController < ApplicationController
     redirect_to edit_user_path, flash: { success: 'Your Avatar has been removed.' }
   end
 
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome! Your email has been confirmed.
+      Please Login in to continue."
+      redirect_to log_in_url
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to sign_up_url
+    end
+
   def user_params
     params.require(:user).permit(:first_name,:last_name,:email, :password, :profile_name,:bio,:avatar)
   end
@@ -106,5 +122,7 @@ class UsersController < ApplicationController
     #rescue ActiveRecord::RecordNotFound
   #end
 
+  
+end
  
 end

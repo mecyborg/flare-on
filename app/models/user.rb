@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   attr_accessor :password
   before_save :encrypt_password
+  before_create :confirmation_token
   #before_save :create_unique_profile_id
   #before_save :add_credits
   has_many :answers, dependent: :destroy
@@ -52,6 +53,12 @@ class User < ActiveRecord::Base
       end
   end
 
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
+  end
+  
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
@@ -85,4 +92,10 @@ def create_unique_profile_id
 
 
 
+private
+def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
+    end
 

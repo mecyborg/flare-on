@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526151148) do
+ActiveRecord::Schema.define(version: 20150528114326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(version: 20150526151148) do
     t.datetime "avatar_updated_at"
     t.boolean  "admin_role",                      default: false
     t.string   "name",                limit: 255
+    t.boolean  "email_confirmed",                 default: false
+    t.string   "confirm_token"
   end
 
 end

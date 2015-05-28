@@ -112,6 +112,7 @@ Bootstrap::Application.routes.draw do
    resources :users do
     member do
       get :following, :followers
+      get :confirm_email
     end
   end
   resources :relationships,       only: [:create, :destroy]

@@ -12,12 +12,20 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      if user.first_name == nil
+      if user.email_confirmed
+         if user.first_name == nil
       redirect_to edit_user_path(current_user), :flash => { :success => "Logged in ! Mark your name first." }
 
       else
       redirect_to myprofile_path, :flash => { :success => "Logged in ! Welcome aboard, mate." }
       end
+        
+      else
+        flash.now[:alert] = 'Please activate your account by following the 
+        instructions in the account confirmation email you received to proceed'
+        render 'new'
+      end
+      
     else
       flash.now[:alert] = 'Oops ! Invalid email or password.'
       render "new"
