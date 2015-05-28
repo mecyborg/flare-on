@@ -5,4 +5,9 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => "#{user.profile_name} <#{user.email}>", :subject => "Ideabata Alpha Registration Confirmation")
  end
+
+ def password_reset(user)
+    @user = user
+    mail(:to => "#{user.email}", :subject => "Password reset")
+  end
 end

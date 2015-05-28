@@ -1,0 +1,16 @@
+DEPRECATION WARNING: Currently, Active Record suppresses errors raised within `after_rollback`/`after_commit` callbacks and only print them to the logs. In the next version, these errors will no longer be suppressed. Instead, the errors will propagate normally just like in other Active Record callbacks.
+
+You can opt into the new behavior and remove this warning by setting:
+
+  config.active_record.raise_in_transactional_callbacks = true
+
+ (called from block in tsort_each at /home/mecyborg/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/tsort.rb:226)
+DEPRECATION WARNING: Currently, Active Record suppresses errors raised within `after_rollback`/`after_commit` callbacks and only print them to the logs. In the next version, these errors will no longer be suppressed. Instead, the errors will propagate normally just like in other Active Record callbacks.
+
+You can opt into the new behavior and remove this warning by setting:
+
+  config.active_record.raise_in_transactional_callbacks = true
+
+ (called from block in tsort_each at /home/mecyborg/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/tsort.rb:226)
+      invoke  active_record
+      create    db/migrate/20150528162847_add_reset_to_users.rb

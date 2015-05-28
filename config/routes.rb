@@ -1,5 +1,9 @@
 Bootstrap::Application.routes.draw do
 
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   get 'myactivity/new'
 
@@ -117,4 +121,5 @@ Bootstrap::Application.routes.draw do
   end
   resources :relationships,       only: [:create, :destroy]
 
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 end

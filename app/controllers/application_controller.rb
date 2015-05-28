@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
 protect_from_forgery with: :null_session 
 
-before_filter :require_login,  only: [:edit, :update] 
+#before_filter :require_login,  only: [:edit, :update] 
 
 #after_filter :user_activity       #who is online
 def current_user
