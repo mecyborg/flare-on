@@ -22,10 +22,10 @@
     
       <div class="col-md-6">
         <div class="panel panel-default">
-          <% if current_user && credits_show %>
+          <% if current_user%>
             <div class="panel-heading"><b>My Credits</b></div>
             <div class="panel-body">
-              <h1><b>Credits:</b> <%= credits_show+50 %></h1>
+              <h1><b>Credits:</b> <%= credits_show %></h1>
               <%= link_to 'Rewards coming soon','#', :class => "btn btn-success" %>
             </div>            
           <%else %>
@@ -53,15 +53,22 @@
           <div class="panel-heading">Credits Breakdown</div>
           <div class="panel-body">
             <p>Each user gets <b>50</b> <em>Bonus Credits</em> on joining ideabata.</p>
-            <h4><b>Upvotes By:</b></h4>
+            
               <!--<h5><b>Total Answer Upvotes</b> = some_value</br></br>
               <b>Total 'First Answer' Credits</b> = another_value
               </h5>-->
-            <% if current_user && credits_show %>
-              <% credits_info.find_each do |user|%>
+            <% if current_user %>
+              <% credits_info.reverse.each do |user|%>
               <% if user %>
-                <p><b><%= user.uid_from%></b> ON answer <em><%= user.ans_id%></em> ( +<%= user.u_value %> )
+              <% @upvotedby = getusername(user.uid_from) %>
+              <div class="col-md-10">
+               <p> <b><%= @upvotedby %></b> upvoted your answer <em><%= user.ans_id%></em> (<%= time_ago_in_words(user.created_at) %> ago)
                 </p>
+                </div>
+                <div class="col-md-2">
+                <b>+<%= user.u_value %></b>
+                </div>
+                 
               <% end %>
             <% end %>
             <% end %>

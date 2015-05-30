@@ -1,10 +1,6 @@
 class AnswersController < ApplicationController
 	
-	helper_method :allans_show
-
-  def allans_show
-    @allans_show ||= Answer.where(question_id: params[:post_quest_id]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
-    end
+	
 
 
   def new
@@ -17,9 +13,7 @@ class AnswersController < ApplicationController
     def show
   # @anyques ||= Answer.where(question_id: params[:id])
   #@anyans ||= Answer.find(params[:id])
-    def allans_show
-    @allans_show ||= Answer.where(question_id: params[:id]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
-    end
+    
 
       #render "show"
 
@@ -27,15 +21,15 @@ class AnswersController < ApplicationController
     end
 
   def create
-   @anyques ||= PostQuest.find(params[:post_quest_id])
-   @anyans ||= Answer.exists?(user_id: current_user[:email], question_id: params[:post_quest_id])
+   @anyques = PostQuest.find(params[:post_quest_id])
+   @anyans = Answer.exists?(user_id: current_user[:id], question_id: params[:post_quest_id])
 
    unless @anyans 
 
     
     @newans = Answer.new
      @newans.question_id = params[:post_quest_id]
-     @newans.user_id = current_user.email
+     @newans.user_id = current_user.id
      answers1 = params[:answer]
      @newans.answer_content = answers1[:answer_content]
      #@newans.answer_content = params[:answer_content]
@@ -52,13 +46,13 @@ class AnswersController < ApplicationController
   end
 
   def edit
-  @anyans ||= Answer.find_by(id: params[:id])
-  if @anyans.blank?
+  @anyans = Answer.find_by(id: params[:id])
+  if @anyans.blank? || (@anyans.user_id.to_s != current_user.id.to_s)
     redirect_to post_quests_path, :flash => { :danger => "Page doesn't exist" }
-  else
-    unless @anyans.user_id == current_user.email
-      redirect_to post_quests_path, :flash => { :danger => "You don't have the permissions" }
-    end  
+  # else
+  #   unless 
+  #     redirect_to post_quests_path, :flash => { :danger => "You don't have the permissions" }
+  #   end  
   end
   
 

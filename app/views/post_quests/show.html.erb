@@ -39,15 +39,15 @@
           <p class="lead"></p>
             <hr></hr>
               <p><span class="glyphicon glyphicon-time"></span>
-               Posted on Feb 20, 2015 at 9:00 PM
+               Posted <%=time_ago_in_words(anyques.created_at.to_s)%> ago
               </p>
             <hr></hr><br />
-
-          <%if current_user %> 
+            
+          <%unless @anyans %> 
         
           <%= render partial: "/answers/new" %>
           <%else %>
-          Login to answer !      
+          You have already answered this question. You can edit your existing answer from below.      
           <% end %>
           <%else%>
           SOME ERROR ! We are working on it. No need to panic !

@@ -3,10 +3,10 @@
    <% if allnoti_show.blank? %>
 <h4><b>No</b> notifications for you. Feeling lonely ? Come on. Do something.</h4>
   <% end %>
-  <% allnoti_show.find_each do |user|%>
+  <% allnoti_show.reverse.each do |user|%>
 
  <% if user %>
-           <p><b><%= user.user_from %></b> <em>upvoted</em> your answer
+           <p><b><%= getusername(user.user_from) %></b> <em>upvoted</em> your answer
            <%= user.ans_id %>. (<%= time_ago_in_words(user.created_at) %> ago)     
            </p>      
    

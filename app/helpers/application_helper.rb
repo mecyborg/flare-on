@@ -8,6 +8,8 @@ module ApplicationHelper
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
+  
+
   def ques_show
     @ques_show ||= Ques.find(1) #if session[:user_id]
   end

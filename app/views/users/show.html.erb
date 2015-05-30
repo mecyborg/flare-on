@@ -29,7 +29,9 @@
   <div class="panel-heading"><b><%= userprofile.first_name %> <%= userprofile.last_name %></b></div>
   <div class="panel-body">
     
-           <p> <%= userprofile.bio %></p>      
+           <p> <%= userprofile.bio %></p>
+           <p> <%= getid(userprofile.email) %></p>      
+
         </br>
 
 <hr/><%= render 'shared/stats' %>

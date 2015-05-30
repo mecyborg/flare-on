@@ -69,35 +69,13 @@
   <div class="container">
     <div class="col-md-6 col-md-offset-3">
       <% flash.each do |key, value| %>
-        <% #if key == "NULL" %>
-        <% #key = 'danger' %>
-        <% #end%>
+        
         <div class="alert alert-<%= key %>"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= value %></div>
       <% end %>
     </div>
   </div>
 
-  <% if current_page?(root_path) %>
-    <% if content_for?(:jumbotron) %>
-      <div class="jumbotron">
-        <div class="container">
-          <%= yield :jumbotron %>
-          </br>
-            <div class="row text-center">
-              <% if current_user %>
-                Logged in as <%= current_user.first_name %>.
-                <%= link_to "Log out", log_out_path, :class => "btn btn-success" %>
-              <% else %>
-                <%= link_to "Sign up", sign_up_path, :class => "btn btn-default" %>  or 
-                <%= link_to "log in", log_in_path, :class => "btn btn-success" %>
-              <% end %>
-            </div>
-        </div>
-      </div>
-    <% end %>
-    <% else %>
-      <!--Error-->
-    <% end %>
+ 
  
   <div class="container">
   <!-- Modal -->
@@ -147,17 +125,6 @@
         
         <%= link_to '<span class="glyphicon-class glyphicon glyphicon-chevron-up"></span> Back to top'.html_safe, '#Top' %>
       </div>
-      <!--<p>
-        &copy; <%= Time.now.year %> <%= site_name %> 
-        &bull;
-        <%= link_to "Privacy", privacy_path %></li>
-        &bull;
-        <%= link_to "Terms", terms_path %></li>
-        &bull;
-        <%= link_to "About", about_path %></li>
-        &bull;
-        <%= link_to "Contact", contact_path %></li>
-      </p>-->
             <div class="container">
       <div class="row">
 

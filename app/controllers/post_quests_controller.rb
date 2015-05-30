@@ -1,6 +1,7 @@
 class PostQuestsController < ApplicationController
   #helper_method :current_user_answered?
 helper_method :allans_show
+helper_method :answered?
 
   def allans_show
     @allans_show ||= Answer.where(question_id: params[:id]).order('notifications.created_at ASC').reverse_order
@@ -31,16 +32,14 @@ helper_method :allans_show
     
 
      def anyques      #individual topic page
-    @anyques ||= PostQuest.find(params[:id])
+    @anyques = PostQuest.find(params[:id])
     end
   
   def show
    
-   @anyques ||= PostQuest.find(params[:id])
+   @anyques = PostQuest.find(params[:id])
+   @anyans = Answer.exists?(user_id: current_user[:id], question_id: params[:id])
    
- 
-  
-  
   end
 
   

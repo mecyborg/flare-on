@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_user
+  helper_method :getid 
+  helper_method :getusername
   helper_method :ques_show
   helper_method :allusers_show
   helper_method :userprofile
@@ -12,10 +14,10 @@ class ApplicationController < ActionController::Base
   helper_method :anyques
   helper_method :user_follow_ques
  # helper_method :allans_show
-  helper_method :credits_show
+ # helper_method :credits_show
   helper_method :postques_show
   helper_method :anyans
-  helper_method :credits_info
+  #helper_method :credits_info
  # helper_method :login_redirect
   helper_method :followed_ques
   helper_method :postques_show_sidebar
@@ -35,6 +37,15 @@ protect_from_forgery with: :null_session
 def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     #rescue ActiveRecord::RecordNotFound
+  end
+
+def getid(email)
+    getid = User.where(:email => email).pluck(:id).first
+    
+  end
+
+  def getusername(id)
+    getuesrname = User.where(:id => id).pluck(:profile_name).first
   end
 
   private
@@ -59,6 +70,8 @@ def current_user
   #scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
     
 
+
+
    def require_login
     unless current_user
       redirect_to log_in_path, :flash => { :danger => "Please Login or Sign Up First." }
@@ -80,13 +93,7 @@ def current_user
 
     #remove 'not' when heroku problem is fixed
    
-    def credits_show
-    @credits_show ||= Credit.where(u_id: current_user[:email]).sum(:u_value)  
-    end
-
-    def credits_info
-    @credits_info ||= Credit.where(u_id: current_user[:email]).order('notifications.created_at ASC').reverse_order.where.not(uid_from: "new_user_bonus")
-    end
+    
     # def login_redirect
     #     #flash[:notice] = 'Successfully checked in'
     #    redirect_to log_in_path, :flash => { :danger => "Please Login" }
@@ -102,7 +109,7 @@ def current_user
     end
 
     def allnoti_show
-    @allnoti_show ||= Notification.where(user_to: current_user[:email]).order('notifications.created_at ASC').reverse_order #if session[:user_id]
+    @allnoti_show ||= Notification.where(user_to: current_user[:id])
   end
 
   def is_admin?
