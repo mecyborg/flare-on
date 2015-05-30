@@ -22,7 +22,7 @@ helper_method :answered?
     end
   end
   def postquest_params
-    params.require(:post_quest).permit(:ques_text,:t_id,:first)
+    params.require(:post_quest).permit(:ques_text,:t_id,:first,:avatar)
   end
 
   def index           #all ques index

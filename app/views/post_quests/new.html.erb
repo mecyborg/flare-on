@@ -30,6 +30,11 @@
     <%= f.label "Topic Id" %><br />
     <%= f.text_field :t_id, :class => "form-control" %>
   </p>
+   <p>
+    <%= f.label "Avatar" %> <small> (Filesize<600KB)</small> <br />
+
+    <%= f.file_field :avatar %>
+  </p>
   <%= f.submit "Post", :class => "btn btn-success"%>
 
 <% end %>

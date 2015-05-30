@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "60x60>", :tiny => "40x40>" }, 
   :url => "/system/users/:id_partition/:style/:hash.:extension",
     :hash_secret => "akfahudagwlgauwgiualsdauyingacbbahdgkabshdabdsga",
-  :default_url => ":style/default_avatar.jpg"
+  :default_url => "default_user/:style/default_avatar.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
  # validates_confirmation_of :password
   validates_presence_of :password, :on => :create

@@ -11,7 +11,8 @@
         <% if ques %>
           <div class="col-md-4">
             <div class="panel panel-success">
-            <%= link_to image_tag("../assets/ques.jpg", class: "img-responsive"), ques %>
+            
+            <%= link_to image_tag(ques.avatar.url(:thumb), class: "img-responsive center-block"), ques %>
               <div class="panel-body">
                 <h4><%=link_to truncate(ques.ques_text, :length => 100), ques %></h4>
                 <br /><br />

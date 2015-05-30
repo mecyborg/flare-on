@@ -34,7 +34,7 @@
       
     -->
       <div class="panel-body">
-        <img class="img-responsive" src="../assets/ques.jpg">
+        <%= image_tag anyques.avatar.url(:banner), :class => "img-responsive center-block" %>
           <h2> <%= anyques.ques_text %> </h2> 
           <p class="lead"></p>
             <hr></hr>
@@ -64,7 +64,7 @@
         <% if anyques && current_user%>
                  <p> <% postques_show_sidebar.each do |question|%>
           <% if question %>
-                 <img class="img-responsive" src="../assets/ques.jpg">      
+                 <%= image_tag question.avatar.url(:tiny), :class => "img-responsive center-block" %>      
                  <p><b><%= link_to question.ques_text, question %>
                  </b></p>
                  <hr></hr>
