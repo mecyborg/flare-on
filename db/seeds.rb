@@ -7,16 +7,16 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 3.times do |n|
   first_name  = Faker::Name.first_name
-  last_name  = Faker::Name.last_name 
-  email = "example-#{n+1}@ideabata.com"
+  last_name  = Faker::Name.last_name
+  email = "example-#{n + 1}@ideabata.com"
   profile_name = Faker::Internet.user_name
   bio = Faker::Name.title
-  password = "password"
+  password = 'password'
   User.create!(first_name: first_name,
-  				last_name: last_name,
-              email: email,
-              profile_name: profile_name,
-              bio: bio,
-              password:              password,
-             )
+  				         last_name: last_name,
+               email: email,
+               profile_name: profile_name,
+               bio: bio,
+               password:              password
+              )
 end

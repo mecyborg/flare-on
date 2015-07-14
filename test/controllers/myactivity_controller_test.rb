@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class MyactivityControllerTest < ActionController::TestCase
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
@@ -10,5 +10,4 @@ class MyactivityControllerTest < ActionController::TestCase
   #   get :show
   #   assert_response :success
   # end
-
 end
