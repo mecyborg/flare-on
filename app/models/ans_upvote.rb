@@ -1,4 +1,3 @@
 class AnsUpvote < ActiveRecord::Base
-
-	belongs_to :answers
+	 belongs_to :answers
 end

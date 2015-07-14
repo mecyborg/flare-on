@@ -1,42 +1,40 @@
 module ApplicationHelper
-
   def site_name
     # Change the value below between the quotes.
-    "Alpha"
+    'Alpha'
   end
+
   def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  
-  
 
   def ques_show
-    @ques_show ||= Ques.find(1) #if session[:user_id]
+    @ques_show ||= Ques.find(1) # if session[:user_id]
   end
-  
+
   def site_url
     if Rails.env.production?
       # Place your production URL in the quotes below
-      "https://salty-scrubland-4489.herokuapp.com/"
+      'https://salty-scrubland-4489.herokuapp.com/'
     else
       # Our dev & test URL
-      "http://localhost:3000"
+      'http://localhost:3000'
     end
   end
 
   def meta_author
     # Change the value below between the quotes.
-    "mecyborg"
+    'mecyborg'
   end
 
   def meta_description
     # Change the value below between the quotes.
-    ""
+    ''
   end
 
   def meta_keywords
     # Change the value below between the quotes.
-    ""
+    ''
   end
 
   # Returns the full title on a per-page basis.
@@ -48,5 +46,4 @@ module ApplicationHelper
       "#{page_title} - #{site_name}"
     end
   end
-
 end

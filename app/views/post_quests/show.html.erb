@@ -1,6 +1,5 @@
 <% if anyques %>
 <% provide(:title, "#{anyques.ques_text}") %>
-<% end %>
 <br/>
 <div class="container">
   <div class="row">
@@ -10,16 +9,16 @@
           <div class="panel-body">  
             
               
-                <% if anyques && current_user%>
+                <% #if anyques && current_user%>
                 </br>
                 <p>
-                <% if user_follow_ques == false %>
-                <%= link_to 'Follow', new_ques_follow_path(:id => anyques.id), :class => "btn btn-warning btn-sm" %>
-                <%else %>
+                <% #if user_follow_ques == false %>
+                <%#= link_to 'Follow', new_ques_follow_path(:id => anyques.id), :class => "btn btn-warning btn-sm" %>
+                <%#else %>
                  <div class= "btn btn-success btn-sm" ><b>Following</b></div> 
                 </p>
-                <%end %>
-                <%end %> 
+                <%#end %>
+                <%#end %> 
               
                   
        
@@ -29,13 +28,13 @@
   
 <div class="col-md-7 col-md-offset-1">
   <div class="panel panel-default">
-    <% if anyques %>
-    <!--<div class="panel-heading"><b>Question Id: <%= anyques.id %></b></div>
+    
+    <!--<div class="panel-heading"><b>Question Id: <%#= anyques.id %></b></div>
       
     -->
       <div class="panel-body">
-        <%= image_tag anyques.avatar.url(:banner), :class => "img-responsive center-block" %>
-          <h2> <%= anyques.ques_text %> </h2> 
+        <%= image_tag anyques.avatar.url(:banner), :class => "img-responsive img-rounded center-block" %>
+          <h2> <%= anyques.ques_text %> </h2>  
           <p class="lead"></p>
             <hr></hr>
               <p><span class="glyphicon glyphicon-time"></span>
@@ -61,17 +60,17 @@
     <div class="panel-heading" align="center"><h3>Latest Questions</h3></div>
     <div class="panel-body">
 
-        <% if anyques && current_user%>
+        
                  <p> <% postques_show_sidebar.each do |question|%>
           <% if question %>
-                 <%= image_tag question.avatar.url(:tiny), :class => "img-responsive center-block" %>      
+                 <%= image_tag question.avatar.url(:tiny), :class => "img-responsive img-rounded center-block" %>      
                  <p><b><%= link_to question.ques_text, question %>
                  </b></p>
                  <hr></hr>
           <br />     
         <% end %>
        <% end %></p>      
-          <% end %>
+         
     </div>
   </div>
 
@@ -96,7 +95,7 @@
       <%end%>
     </div>  
     </div>
-    <%= link_to "Show All", answer_path(@anyques)%>
+    <%= link_to "Show All Answers", answer_path(@anyques), :class => "btn btn-info"%>
   </div>
 
 </div>

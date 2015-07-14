@@ -5,7 +5,7 @@
     <!-- Example row of columns -->
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
-    <% if is_admin? %>
+    <% if admin? %>
 <%= link_to "Add new topic", new_alltopic_path, :class => "btn btn-success" %>
 
   </br></br><%end %>
@@ -16,15 +16,15 @@
   <div class="panel-body">
 
   <% @alltopics.each do |user| %>
-  
+
  <% if user %>
-               
+
            <p> <%#= image_tag user.avatar.url(:thumb)%>
 
            <%= user.id %> - <%= link_to user.t_name, user %>
-           
-           </p></br>     
-  
+
+           </p></br>
+
   <% end %>
  <% end %>
   </div>
@@ -32,7 +32,7 @@
 <%= will_paginate %>
 </div>
 
-  
+
 
 </div>
 </div>

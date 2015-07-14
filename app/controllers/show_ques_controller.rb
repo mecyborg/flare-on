@@ -1,3 +1,2 @@
 class ShowQuesController < ApplicationController
-
 end

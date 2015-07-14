@@ -1,5 +1,5 @@
 class FirstHomeController < ApplicationController
-def show
-render "home"
-end
+  def show
+    render 'home'
+  end
 end

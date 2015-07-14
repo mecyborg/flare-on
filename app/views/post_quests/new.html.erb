@@ -1,13 +1,13 @@
-<% if is_admin? == false %>
+<% if admin? == false %>
 <% redirect_admin %>
 <% end %>
 
 <% provide(:title, "Post Question") %>
 
 <div class="container">
-   
+
     <div class="row">
-    
+
 <div class="col-md-3 col-md-offset-4">
 <h2>Post New Question</h2>
 

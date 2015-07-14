@@ -36,7 +36,7 @@
   <% end %>
   <% myupvotes.find_each do |myupvote|%>
  <% if myupvote %>
-           <p> You upvoted <b><%= myupvote.u_id %></b> 's answer <%= myupvote.ans_id %>.  (<%= time_ago_in_words(myupvote.created_at) %> ago) </p>   
+           <p> You upvoted <b><%= getusername(myupvote.u_id) %></b> 's answer <%= myupvote.ans_id %>.  (<%= time_ago_in_words(myupvote.created_at) %> ago) </p>   
           
                       
             
