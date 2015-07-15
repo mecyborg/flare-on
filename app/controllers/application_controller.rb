@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :getid
-  helper_method :getusername
+  helper_method :userdetails
   helper_method :ques_show
   helper_method :allusers_show
   helper_method :userprofile
@@ -41,8 +41,8 @@ class ApplicationController < ActionController::Base
     User.where(email: email).pluck(:id).first
   end
 
-  def getusername(id)
-    User.where(id: id).pluck(:profile_name).first
+  def userdetails(id)
+    User.where(id: id).first
   end
 
   private

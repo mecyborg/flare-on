@@ -3,36 +3,34 @@
 
     <%else%>
 <% allans_show.find_each do |ans|%>
- 
- <% if ans %>
-      <% @answeredby = getusername(ans.user_id) %>
 
-          <p><b><%= @answeredby %></b> (<%= time_ago_in_words(ans.created_at) %> ago) 
-          <%if @answeredby == current_user.profile_name %>
-          <%= link_to "Edit", edit_answer_path(ans) %>
-          
-          <% end %></p>
-           <p> <div class="well"><p><%= raw(ans.answer_content) %></div>
-           </p><%#= link_to "Edit Answer", edit_answer_path(@anyans) %>
+ <% if ans %>
+      <% @answeredby = userdetails(ans.user_id) %>
+          <p><%= gravatarques_for @answeredby, "36" %><b><%= @answeredby.profile_name %></b> (<%= time_ago_in_words(ans.created_at) %> ago)
+              <%if @answeredby.profile_name == current_user.profile_name %>
+              <%= link_to "Edit", edit_answer_path(ans) %>
+              <% end %></p><br/>
+           <div class="well"><p><%= raw(ans.answer_content) %></div>
+
            <p>
-       
+
   <%#if AnsUpvote.exists?%>
 
   <% upvote_count = AnsUpvote.where(ans_id: ans.id).count %>
     <%if AnsUpvote.where(u_id: current_user.id, ans_id: ans.id).exists? == false && (@answeredby == current_user.profile_name) == false %>
 
    <% if upvote_count == 0 %>
-   <%= link_to  "Be the first one to Upvote", new_answer_ans_upvote_path(ans), :class => "btn btn-warning btn-sm" %>   
+   <%= link_to  "Be the first one to Upvote", new_answer_ans_upvote_path(ans), :class => "btn btn-warning btn-sm" %>
    <%else %>
     <%= link_to  "Upvote | #{upvote_count}", new_answer_ans_upvote_path(ans), :class => "btn btn-warning btn-sm" %>
       <% end %>
     <%else %>
 
      <div class= "btn btn-success btn-sm" ><b>Upvoted <span class="badge"><%= upvote_count %></span></b></div></p>
-       
+
   <% end %>
 
-   
+
  <% end %>
 <hr>
  <% end %>

@@ -1,4 +1,4 @@
-body {background-color: #fafafa; 
+body {background-color: #fafafa;
 		-webkit-font-smoothing: antialiased;
     	-webkit-overflow-scrolling: touch;}
 
@@ -17,7 +17,7 @@ hr {
 }
 
 #headerwrap {
-	
+
     background-color:  #34495E;
 	margin-top: -70px;
 	font-family: "Raleway";
@@ -34,21 +34,21 @@ hr {
 #headerwrap h3 {
 	color: white;
 	font-size: 30px;
-	
+
 }
 
 #headerwrap h5 {
 	color: white;
 	font-weight: 700;
 	text-align: left;
-	
-    
+
+
 }
 
 #headerwrap p {
 	text-align: left;
 	color: white;
-	
+
 }
 
 /* intro Wrap */

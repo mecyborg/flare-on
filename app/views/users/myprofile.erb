@@ -7,17 +7,18 @@
     <div class="col-md-12 col-md-offset--1">
     <!--<div class="col-md-3">
     <img src="/assets/default-.jpeg">
-    </div>--> 
+    </div>-->
 <div class="col-md-3">
   <div class="panel panel-default">
-  
+
   <div class="panel-body">
   <%if current_user%>
 
-  <%= image_tag current_user.avatar.url(:medium), :class => "img-responsive center-block" %>
+  <%#= image_tag current_user.avatar.url(:medium), :class => "img-responsive center-block" %>
+  <%= gravatar_for current_user, "200" %>
 <%end%>
 </div>
-</div>	
+</div>
 </div>
 <div class="col-md-6">
   <div class="panel panel-default">
@@ -25,10 +26,10 @@
   <div class="panel-heading"><b><%= current_user.first_name %> <%= current_user.last_name %></b></div>
   <div class="panel-body">
     <% if current_user %>
-           <p> <%= current_user.bio %></p> 
+           <p> <%= current_user.bio %></p>
             </br>
-        <hr/>   <%= render 'shared/stats' %>    
-    <% end %>      
+        <hr/>   <%= render 'shared/stats' %>
+    <% end %>
     <% end %>
   </div>
 </div>
@@ -36,14 +37,14 @@
   <%#= link_to "Post New Question", new_post_quest_path, :class => "btn btn-success" %>
 </br>
 
-  
+
 </div>
 <div class="col-md-3">
   <div class="panel panel-default">
   <div class="panel-heading">Related</div>
   <div class="panel-body">
     <% if current_user %>
-           <p> Related Profiles</p>      
+           <p> Related Profiles</p>
     <% end %>
   </div>
 </div>
@@ -52,10 +53,10 @@
 </div>
 </div>
   <div class="row">
-    
+
 </div>
 
-  
+
 </div>
   </div>
 </div>

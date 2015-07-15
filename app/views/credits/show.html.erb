@@ -8,7 +8,8 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <%if current_user%>
-              <%= image_tag current_user.avatar.url(:medium), :class => "img-responsive center-block" %>
+              <%#= image_tag current_user.avatar.url(:medium), :class => "img-responsive center-block" %>
+              <%= gravatar_for current_user, "200" %>
             <%end %>
             <div class="col-md-3 col-md-offset-1">
               <div class="row">
@@ -17,9 +18,9 @@
               </div>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
-    
+
       <div class="col-md-6">
         <div class="panel panel-default">
           <% if current_user%>
@@ -27,11 +28,11 @@
             <div class="panel-body">
               <h1><b>Credits:</b> <%= credits_show %></h1>
               <%= link_to 'Rewards coming soon','#', :class => "btn btn-success" %>
-            </div>            
+            </div>
           <%else %>
             <% require_login %>
           <% end %>
-        </div> 
+        </div>
       </div>
 
       <div class="col-md-3">
@@ -39,7 +40,7 @@
             <div class="panel-heading">Related</div>
             <div class="panel-body">
               <% if current_user %>
-                <p> Related Profiles</p>      
+                <p> Related Profiles</p>
               <% end %>
             </div>
         </div>
@@ -53,7 +54,7 @@
           <div class="panel-heading">Credits Breakdown</div>
           <div class="panel-body">
             <p>Each user gets <b>50</b> <em>Bonus Credits</em> on joining ideabata.</p>
-            
+
               <!--<h5><b>Total Answer Upvotes</b> = some_value</br></br>
               <b>Total 'First Answer' Credits</b> = another_value
               </h5>-->
@@ -68,7 +69,7 @@
                 <div class="col-md-2">
                 <b>+<%= user.u_value %></b>
                 </div>
-                 
+
               <% end %>
             <% end %>
             <% end %>

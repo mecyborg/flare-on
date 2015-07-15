@@ -1,10 +1,10 @@
 
 <% provide(:title, "Edit Profile") %>
 
-<div class="container"> 
+<div class="container">
 
 <% correct_url %>
-    
+
 <div class="col-md-10 col-md-offset-1">
 <div class="row">
 <h2>Edit your Profile</h2>
@@ -21,8 +21,8 @@
     </div>
   <% end %>
   <div class="col-md-4">
-     
-  
+
+
    <p>
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, :class => "form-control" %>
@@ -35,16 +35,16 @@
     <%= f.label "Username" %><br />
     <%= f.text_field :profile_name, :class => "form-control" %>
   </p>
-  <p>
-    <%= f.label "Avatar" %> <small> (Filesize<600KB)</small> <br />
+  <!--<p>
+    <%#= f.label "Avatar" %> <small> (Filesize<600KB)</small> <br />
 
-    <%= f.file_field :avatar %>
+    <%#= f.file_field :avatar %>
     <br />
-    <% if @user.persisted? %>
-    <%= link_to 'Remove Avatar', delete_avatar_path %>
-  <% end %>
+    <%# if @user.persisted? %>
+    <%#= link_to 'Remove Avatar', delete_avatar_path %>
+  <%# end %>
   </p>
-  
+  -->
   </div>
   <div class="col-md-5 col-md-offset-1">
   <p>
@@ -71,6 +71,7 @@
 </div>
 <div class="row">
  </br></br><p><b>NOTE:</b> Leave Password field <em>blank</em> if you don't want to change your password.</p>
+ <p> You can change you avatar from <%= link_to "Gravatar", "http://gravatar.com/"%>.</p>
   </div>
 </div>
 

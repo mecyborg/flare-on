@@ -16,7 +16,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'faker'
 # gem 'thin'		#thin web server
 gem 'unicorn'		# unicorn web server
-gem 'omniauth-facebook'
+# gem 'omniauth-facebook'
 gem 'unicorn-rails'
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -50,6 +50,9 @@ group :development, :test do
   gem 'spring'
   gem 'rails-footnotes', '~> 4.0'
   gem 'rack-mini-profiler'
+  gem 'rubocop', require: false # Linting
+  gem 'rspec-rails'
+  gem 'capybara'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -64,5 +67,5 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'paperclip', '~> 4.2'
-gem 'rspec-rails'
-gem 'rubocop', require: false	# Linting
+gem 'factory_girl'
+# gem 'devise'
