@@ -79,7 +79,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'salty-scrubland-4489.herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
     user_name: 'mecyborg',
-    password: '7sUgNXGd',
+    password: '-',
     domain: 'salty-scrubland-4489.herokuapp.com',
     address: 'smtp.sendgrid.net',
     port: 587,
